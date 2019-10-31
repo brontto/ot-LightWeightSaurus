@@ -1,0 +1,107 @@
+commit a338a3be9b36f692416a180e27d2fe176b8bdce6
+Author: Virtanen Henri <virhenri@melkinpaasi.cs.helsinki.fi>
+Date:   Thu Oct 31 13:27:32 2019 +0200
+
+    catfile
+
+ catfile | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 977079ac7977dff8cb2c3dea4f22b0cca2a4b346
+Author: brontto <bronttosaur@gmail.com>
+Date:   Thu Oct 31 13:25:16 2019 +0200
+
+    muutoksia
+
+ tiedostot/file1.txt  | 0
+ tiedostot/file2.txt  | 0
+ tiedostot/file22.txt | 0
+ tiedostot/file3.txt  | 1 +
+ 4 files changed, 1 insertion(+)
+
+commit b5212b83b24cd08e5dacc1b404cae16fb7ddd85e
+Author: brontto <bronttosaur@gmail.com>
+Date:   Thu Oct 31 13:22:49 2019 +0200
+
+    kansio
+
+ tiedostot/file1.txt | 0
+ tiedostot/file2.txt | 0
+ tiedostot/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 726e894c5ea671a41dd45c5f0af4d4291d1d9e94
+Author: brontto <bronttosaur@gmail.com>
+Date:   Thu Oct 31 13:18:30 2019 +0200
+
+    muutoksiaaa
+
+ eka.txt    | 6 +-----
+ kolmas.txt | 5 +++++
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+commit b500add468275043f337b42e055bd1955d9f3cfb
+Author: brontto <bronttosaur@gmail.com>
+Date:   Thu Oct 31 13:16:52 2019 +0200
+
+    muutoksia
+
+ eka.txt      | 17 +++++++++++++++++
+ tiedosto.txt | 17 -----------------
+ toinen.txt   |  0
+ 3 files changed, 17 insertions(+), 17 deletions(-)
+
+commit 5f442df2dbd9bca27349314d2c123cb287731920
+Author: brontto <bronttosaur@gmail.com>
+Date:   Thu Oct 31 13:14:03 2019 +0200
+
+    poisto ja lisää
+
+ tiedosto.txt | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+commit d58b458482419d7c067c80269a66a1be6a347778
+Author: brontto <bronttosaur@gmail.com>
+Date:   Thu Oct 31 13:13:32 2019 +0200
+
+    paljon tekstiä
+
+ tiedosto.txt | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit 372d0dfc43c15122bcc843cf24b0c95f0b998dc4
+Author: Virtanen Henri <virhenri@melkinpaasi.cs.helsinki.fi>
+Date:   Thu Oct 31 12:59:01 2019 +0200
+
+    uusi kansio
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d21f6694ddd0c2080a5922e9529f1110cce789a9
+Author: Virtanen Henri <virhenri@melkinpaasi.cs.helsinki.fi>
+Date:   Thu Oct 31 12:58:00 2019 +0200
+
+    kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 1ba59bcf4bc8f0736f35c0f8d8d625bd8dfdfbad
+Author: Virtanen Henri <virhenri@melkinpaasi.cs.helsinki.fi>
+Date:   Thu Oct 31 12:56:14 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit e35ab6549ef22c97dea9e87839701ad1657bcf2f
+Author: Virtanen Henri <virhenri@melkinpaasi.cs.helsinki.fi>
+Date:   Thu Oct 31 12:53:32 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
