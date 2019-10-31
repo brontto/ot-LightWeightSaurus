@@ -1,5 +1,5 @@
 ## Otsikko
 
 Tavallinen teskti.
-*Lihavoitu teksti.*
+**Lihavoitu teksti.**
 _Kursivoitu teksti._
