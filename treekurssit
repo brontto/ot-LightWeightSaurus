@@ -1,0 +1,33 @@
+kurssit
+├── ot2019
+│   └── viikko1
+│       └── Unicafe
+│           ├── pom.xml
+│           └── src
+│               ├── main
+│               │   └── java
+│               │       └── com
+│               │           └── mycompany
+│               │               └── unicafe
+│               │                   ├── Kassapaate.java
+│               │                   ├── Maksukortti.java
+│               │                   └── Paaohjelma.java
+│               └── test
+│                   └── java
+│                       └── com
+│                           └── mycompany
+│                               └── unicafe
+│                                   └── MaksukorttiTest.java
+└── ot_viikko1
+    ├── catfile
+    ├── eka.txt
+    ├── kolmas.txt
+    ├── stuff
+    │   └── jokin.txt
+    ├── tiedostot
+    │   ├── file22.txt
+    │   └── file3.txt
+    ├── treekurssit
+    └── viikko1
+
+18 directories, 12 files
