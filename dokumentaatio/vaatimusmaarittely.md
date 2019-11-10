@@ -11,6 +11,7 @@ Yksinkertainen scene jossa on kuutio jota voidaan pyörittää käyttäjän syö
 - Scenen talennus tiedostoon. 
 - Peli jossa on jotain järkeä.
 - Kyky toistaa ääntä pelin aikana. 
-- Valot.
+- Tuki UI:lle. 
+- Työkalut valojen säätämiseen.
 - Editori scenejen luontiin.
 - Verkkopeliominaisuuksia.
