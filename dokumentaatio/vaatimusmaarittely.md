@@ -8,8 +8,8 @@ Sen keskeiset ominaisuudet ovat 3d-grafiikan piirtäminen, käyttäjän syöttee
 Yksinkertainen scene jossa on kuutio jota voidaan pyörittää käyttäjän syötteen avulla.
 
 ## Jatkokehitys
--Scenen talennus tiedostoon. 
--Peli jossa on jotain järkeä.
--Kyky toistaa ääntä pelin aikana. 
--Valot.
--Verkkopeliominaisuuksia.
+- Scenen talennus tiedostoon. 
+- Peli jossa on jotain järkeä.
+- Kyky toistaa ääntä pelin aikana. 
+- Valot.
+- Verkkopeliominaisuuksia.
