@@ -12,4 +12,5 @@ Yksinkertainen scene jossa on kuutio jota voidaan pyörittää käyttäjän syö
 - Peli jossa on jotain järkeä.
 - Kyky toistaa ääntä pelin aikana. 
 - Valot.
+- Editori scenejen luontiin.
 - Verkkopeliominaisuuksia.
