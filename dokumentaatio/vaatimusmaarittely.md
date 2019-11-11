@@ -9,6 +9,7 @@ Yksinkertainen scene jossa on kuutio jota voidaan pyörittää käyttäjän syö
 
 ## Jatkokehitys
 - Scenen talennus tiedostoon. 
+- Komponentti systeemi
 - Peli jossa on jotain järkeä.
 - Kyky toistaa ääntä pelin aikana. 
 - Tuki UI:lle. 
