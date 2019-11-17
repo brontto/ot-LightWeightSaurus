@@ -4,7 +4,7 @@ import org.lwjgl.glfw.*;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class Input{
+public class Input {
 
     private static boolean[] keys = new boolean[GLFW_KEY_LAST];
     private static boolean[] buttons = new boolean[GLFW_MOUSE_BUTTON_LAST];
@@ -17,7 +17,7 @@ public class Input{
     private static GLFWMouseButtonCallback mouseButtons;
     private static GLFWScrollCallback mouseScroll;
 
-    public static void Init(Long window){
+    public static void Init(Long window) {
         keyboard = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -54,7 +54,7 @@ public class Input{
         GLFW.glfwSetScrollCallback(window, mouseScroll);
     }
 
-    public static void destroy(){
+    public static void destroy() {
         keyboard.free();
         mouseMove.free();
         mouseButtons.free();
@@ -93,11 +93,11 @@ public class Input{
         return mouseScroll;
     }
 
-    public static boolean isKeyDown(int key){
+    public static boolean isKeyDown(int key) {
         return keys[key];
     }
 
-    public static boolean isButtonDown(int key){
+    public static boolean isButtonDown(int key) {
         return buttons[key];
     }
 }

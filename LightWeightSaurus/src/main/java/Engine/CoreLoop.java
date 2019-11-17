@@ -4,7 +4,7 @@ import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class CoreLoop implements Runnable{
+public class CoreLoop implements Runnable {
 
     public Thread thread;
     public Window window;
@@ -15,12 +15,12 @@ public class CoreLoop implements Runnable{
 
     private boolean keepRunning;
 
-    public void start(){
+    public void start() {
         thread = new Thread(this);
         thread.run();
     }
 
-    public void init(){
+    public void init() {
         System.out.println("Initialized Game");
         window = new Window(WIDTH, HEIGHT, "GAME");
         window.setBackgroundColor(0.5f, 0.5f, 0.5f);
@@ -31,9 +31,9 @@ public class CoreLoop implements Runnable{
         keepRunning = true;
     }
 
-    public void run(){
+    public void run() {
         init();
-        while (keepRunning){
+        while (keepRunning) {
             update();
             render();
 
@@ -47,15 +47,15 @@ public class CoreLoop implements Runnable{
         //System.out.println("Updating Game");
         window.update();
 
-        if(Input.isKeyDown(GLFW_KEY_ESCAPE) || window.close()){
+        if (Input.isKeyDown(GLFW_KEY_ESCAPE) || window.close()) {
             keepRunning = false;
         }
 
-        if(Input.isKeyDown(GLFW_KEY_F11)){
+        if (Input.isKeyDown(GLFW_KEY_F11)) {
             window.setFullScreen(!window.isFullScreen());
         }
 
-        if(Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)){
+        if (Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
             System.out.println("X: " + Input.getMouseX() + ", Y: " + Input.getMouseY());
         }
     }
@@ -66,7 +66,7 @@ public class CoreLoop implements Runnable{
         window.swapBuffers();
     }
 
-    private void destroy(){
+    private void destroy() {
         Input.destroy();
         window.destroy();
 
