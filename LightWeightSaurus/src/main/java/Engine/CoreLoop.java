@@ -1,5 +1,9 @@
 package Engine;
 
+import Graphics.Mesh;
+import Graphics.Renderer;
+import Graphics.Vertex;
+import Maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -10,6 +14,17 @@ public class CoreLoop implements Runnable {
     public Window window;
 
     public final int WIDTH = 1280, HEIGHT = 720;
+
+    public Renderer renderer;
+    public Mesh mesh = new Mesh(new Vertex[]{
+            new Vertex(new Vector3f(-0.5F,0.5F,0.0f)),
+            new Vertex(new Vector3f(-0.5F,-0.5F,0.0f)),
+            new Vertex(new Vector3f(0.5F,-0.5F,0.0f)),
+            new Vertex(new Vector3f(0.5F,0.5F,0.0f))
+    }, new int[]{
+            0,1,2,
+            0,3,2
+    });
 
     public Input input;
 
@@ -23,10 +38,12 @@ public class CoreLoop implements Runnable {
     public void init() {
         System.out.println("Initialized Game");
         window = new Window(WIDTH, HEIGHT, "GAME");
-        window.setBackgroundColor(0.5f, 0.5f, 0.5f);
+        renderer = new Renderer();
+        window.setBackgroundColor(1.0f, 0.5f, 0.5f);
         //window.setFullScreen(true);
         window.create();
 
+        mesh.create();
         Input.Init(window.getWindow());
         keepRunning = true;
     }
@@ -63,6 +80,7 @@ public class CoreLoop implements Runnable {
 
     private void render() {
         //System.out.println("Rendering Game");
+        renderer.renderMesh(mesh);
         window.swapBuffers();
     }
 

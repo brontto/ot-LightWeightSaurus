@@ -1,5 +1,6 @@
 package Engine;
 
+import Maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
@@ -18,7 +19,7 @@ public class Window {
     public int frames;
     private long time;
 
-    private float backgroundR, backgroundG, backgroundB;
+    private Vector3f background = new Vector3f(0, 0, 0);
 
     private GLFWWindowSizeCallback sizeCallback;
 
@@ -80,7 +81,7 @@ public class Window {
             isResized = false;
         }
 
-        GL11.glClearColor(backgroundR, backgroundG, backgroundB, 1.0f);
+        GL11.glClearColor(background.getX(), background.getY(), background.getZ(), 1.0f);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_COLOR_BUFFER_BIT);
         GLFW.glfwPollEvents();//tätä on pakko kutsuu main threadistaaaa
         frames++;
@@ -99,9 +100,7 @@ public class Window {
     }
 
     public void setBackgroundColor(float r, float g, float b) {
-        backgroundB = b;
-        backgroundG = g;
-        backgroundR = r;
+        background.set(r, g, b);
     }
 
     public void destroy() {
