@@ -59,7 +59,7 @@ public class Window {
         GLFW.glfwShowWindow(window);
 
         //määrää kuinka monta framea bufferi odottaa ennkuin vaihtaa
-        //GLFW.glfwSwapInterval(2);
+        //GLFW.glfwSwapInterval(1);
 
     }
 

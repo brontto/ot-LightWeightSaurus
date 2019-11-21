@@ -2,6 +2,7 @@ package Engine;
 
 import Graphics.Mesh;
 import Graphics.Renderer;
+import Graphics.Shader;
 import Graphics.Vertex;
 import Maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -15,15 +16,16 @@ public class CoreLoop implements Runnable {
 
     public final int WIDTH = 1280, HEIGHT = 720;
 
+    public Shader shader;
     public Renderer renderer;
-    public Mesh mesh = new Mesh(new Vertex[]{
-            new Vertex(new Vector3f(-0.5F,0.5F,0.0f)),
-            new Vertex(new Vector3f(-0.5F,-0.5F,0.0f)),
-            new Vertex(new Vector3f(0.5F,-0.5F,0.0f)),
-            new Vertex(new Vector3f(0.5F,0.5F,0.0f))
-    }, new int[]{
-            0,1,2,
-            0,3,2
+    public Mesh mesh = new Mesh(new Vertex[] {
+            new Vertex(new Vector3f(-0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
+            new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
+            new Vertex(new Vector3f( 0.5f, -0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
+            new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f))
+    }, new int[] {
+            0, 1, 2,
+            0, 3, 2
     });
 
     public Input input;
@@ -38,13 +40,17 @@ public class CoreLoop implements Runnable {
     public void init() {
         System.out.println("Initialized Game");
         window = new Window(WIDTH, HEIGHT, "GAME");
-        renderer = new Renderer();
         window.setBackgroundColor(1.0f, 0.5f, 0.5f);
-        //window.setFullScreen(true);
-        window.create();
 
-        mesh.create();
+        window.create();
+        //window.setFullScreen(true);
+        shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
+
+
         Input.Init(window.getWindow());
+        mesh.create();
+        shader.create();
+        renderer = new Renderer(shader);
         keepRunning = true;
     }
 
@@ -53,7 +59,6 @@ public class CoreLoop implements Runnable {
         while (keepRunning) {
             update();
             render();
-
 
         }
         destroy();
@@ -87,7 +92,8 @@ public class CoreLoop implements Runnable {
     private void destroy() {
         Input.destroy();
         window.destroy();
-
+        mesh.destroy();
+        shader.destroy();
         GLFW.glfwTerminate();
     }
 }
