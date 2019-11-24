@@ -8,8 +8,9 @@ import Maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.GL_TRUE;
 
-public class CoreLoop implements Runnable {
+public class Engine implements Runnable {
 
     public Thread thread;
     public Window window;
@@ -20,37 +21,36 @@ public class CoreLoop implements Runnable {
     public Renderer renderer;
     public Mesh mesh = new Mesh(new Vertex[] {
             new Vertex(new Vector3f(-0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
-            new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
-            new Vertex(new Vector3f( 0.5f, -0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
-            new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f))
+            new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f,0.0f)),
+            new Vertex(new Vector3f( 0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 0.0f,1.0f)),
+            new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 1.0f,0.0f))
     }, new int[] {
             0, 1, 2,
             0, 3, 2
     });
 
-    public Input input;
+
 
     private boolean keepRunning;
 
     public void start() {
         thread = new Thread(this);
-        thread.run();
+        thread.start(); //tää kutsuu run metodia
     }
 
     public void init() {
-        System.out.println("Initialized Game");
+
         window = new Window(WIDTH, HEIGHT, "GAME");
+        shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
+        renderer = new Renderer(shader);
+
         window.setBackgroundColor(1.0f, 0.5f, 0.5f);
 
         window.create();
-        //window.setFullScreen(true);
-        shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
-
-
-        Input.Init(window.getWindow());
         mesh.create();
         shader.create();
-        renderer = new Renderer(shader);
+        //window.setFullScreen(true);
+        Input.Init(window.getWindow());
         keepRunning = true;
     }
 

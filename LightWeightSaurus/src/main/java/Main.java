@@ -1,10 +1,9 @@
-import Engine.CoreLoop;
+import Engine.Engine;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        new CoreLoop().run();
+        new Engine().start();
     }
-
 }

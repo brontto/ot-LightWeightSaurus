@@ -69,7 +69,7 @@ public class Input {
         return mouseX;
     }
 
-    public static double getScrollYY() {
+    public static double getScrollY() {
         return scrollY;
     }
 

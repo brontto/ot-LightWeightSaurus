@@ -7,60 +7,52 @@ import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
-
 public class Window {
-
-
     private int width, height;
     private String title;
-
     private long window;
-
-    public int frames;
-    private long time;
-
+    private int frames;
+    private static long time;
     private Vector3f background = new Vector3f(0, 0, 0);
-
     private GLFWWindowSizeCallback sizeCallback;
-
     private boolean isResized;
-    private boolean fullScreen;
-
+    private boolean isFullscreen;
     private int[] windowPosX = new int[1], windowPosY = new int[1];
 
     public Window(int width, int height, String title) {
         this.width = width;
         this.height = height;
         this.title = title;
-        this.time = System.currentTimeMillis();
     }
 
     public void create() {
         if (!GLFW.glfwInit()) {
-            System.err.println("ERROR: GLFW was not initialized.");
+            System.err.println("ERROR: GLFW wasn't initializied");
             return;
         }
 
-        window = GLFW.glfwCreateWindow(width, height, title, fullScreen ? GLFW.glfwGetPrimaryMonitor() : 0, 0);
+        window = GLFW.glfwCreateWindow(width, height, title, isFullscreen ? GLFW.glfwGetPrimaryMonitor() : 0, 0);
 
         if (window == 0) {
-            System.err.println("ERROR: Window was not created.");
+            System.err.println("ERROR: Window wasn't created");
+            return;
         }
 
-        GLFWVidMode vidMode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
-        windowPosX[0] = (vidMode.width() - width) / 2;
-        windowPosY[0] = (vidMode.height() - height) / 2;
+        GLFWVidMode videoMode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
+        windowPosX[0] = (videoMode.width() - width) / 2;
+        windowPosY[0] = (videoMode.height() - height) / 2;
         GLFW.glfwSetWindowPos(window, windowPosX[0], windowPosY[0]);
         GLFW.glfwMakeContextCurrent(window);
         GL.createCapabilities();
         GL11.glEnable(GL11.GL_DEPTH_TEST);
+
         createCallbacks();
 
         GLFW.glfwShowWindow(window);
 
-        //määrää kuinka monta framea bufferi odottaa ennkuin vaihtaa
-        //GLFW.glfwSwapInterval(1);
+        GLFW.glfwSwapInterval(1);
 
+        time = System.currentTimeMillis();
     }
 
     private void createCallbacks() {
@@ -80,10 +72,9 @@ public class Window {
             GL11.glViewport(0, 0, width, height);
             isResized = false;
         }
-
         GL11.glClearColor(background.getX(), background.getY(), background.getZ(), 1.0f);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_COLOR_BUFFER_BIT);
-        GLFW.glfwPollEvents();//tätä on pakko kutsuu main threadistaaaa
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        GLFW.glfwPollEvents();
         frames++;
         if (System.currentTimeMillis() > time + 1000) {
             GLFW.glfwSetWindowTitle(window, title + " | FPS: " + frames);
@@ -92,29 +83,41 @@ public class Window {
         }
     }
 
-
     public void swapBuffers() {
-        //tää voitas kutsuu secondary thread
         GLFW.glfwSwapBuffers(window);
+    }
 
+    public boolean shouldClose() {
+        return GLFW.glfwWindowShouldClose(window);
+    }
+
+    public void destroy() {
+        sizeCallback.free();
+        GLFW.glfwWindowShouldClose(window);
+        GLFW.glfwDestroyWindow(window);
     }
 
     public void setBackgroundColor(float r, float g, float b) {
         background.set(r, g, b);
     }
 
-    public void destroy() {
-        GLFW.glfwWindowShouldClose(window);
-        GLFW.glfwDestroyWindow(window);
-        sizeCallback.free();
+    public boolean isFullScreen() {
+        return isFullscreen;
+    }
+
+    public void setFullScreen(boolean isFullscreen) {
+        this.isFullscreen = isFullscreen;
+        isResized = true;
+        if (isFullscreen) {
+            GLFW.glfwGetWindowPos(window, windowPosX, windowPosY);
+            GLFW.glfwSetWindowMonitor(window, GLFW.glfwGetPrimaryMonitor(), 0, 0, width, height, 0);
+        } else {
+            GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 0);
+        }
     }
 
     public boolean close() {
         return GLFW.glfwWindowShouldClose(window);
-    }
-
-    public long getWindow() {
-        return window;
     }
 
     public int getWidth() {
@@ -129,18 +132,7 @@ public class Window {
         return title;
     }
 
-    public boolean isFullScreen() {
-        return fullScreen;
-    }
-
-    public void setFullScreen(boolean fullScreen) {
-        this.fullScreen = fullScreen;
-        isResized = true;
-        if (fullScreen) {
-            GLFW.glfwGetWindowPos(window, windowPosX, windowPosY);
-            GLFW.glfwSetWindowMonitor(window, GLFW.glfwGetPrimaryMonitor(), 0, 0, width, height, 0);
-        } else {
-            GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 0);
-        }
+    public long getWindow() {
+        return window;
     }
 }
