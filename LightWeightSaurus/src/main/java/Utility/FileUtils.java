@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 
 public class FileUtils {
     public static String loadAsString(String path){
+
+
+
         StringBuilder result = new StringBuilder();
 
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(Class.class.getResourceAsStream(path)))){
