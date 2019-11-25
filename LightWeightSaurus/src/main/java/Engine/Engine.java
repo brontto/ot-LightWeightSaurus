@@ -38,7 +38,7 @@ public class Engine implements Runnable {
         thread.start(); //tää kutsuu run metodia
     }
 
-    public void init() {
+    public void init() throws Exception {
 
         window = new Window(WIDTH, HEIGHT, "GAME");
         shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
@@ -55,7 +55,11 @@ public class Engine implements Runnable {
     }
 
     public void run() {
-        init();
+        try {
+            init();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         while (keepRunning) {
             update();
             render();

@@ -1,26 +1,15 @@
 package Utility;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.util.Scanner;
 
 public class FileUtils {
-    public static String loadAsString(String path){
-
-
-
-        StringBuilder result = new StringBuilder();
-
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(Class.class.getResourceAsStream(path)))){
-
-            String line = "";
-            while ((line = reader.readLine()) != null){
-                result.append(line).append("\n");
-            }
-
-        }catch (IOException e){
-            System.err.println("Couldn't find the file at " + path);
+    public static String loadAsString(String fileName) throws  Exception{
+        String result;
+        try (InputStream in = Class.forName(FileUtils.class.getName()).getResourceAsStream(fileName);
+             Scanner scanner = new Scanner(in, "UTF-8")) {
+            result = scanner.useDelimiter("\\A").next();
         }
-        return result.toString();
+        return result;
     }
 }

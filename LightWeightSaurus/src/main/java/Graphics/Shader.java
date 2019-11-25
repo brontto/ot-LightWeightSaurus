@@ -8,12 +8,14 @@ public class Shader {
     private String vertexFile, fragmentFile;
     private int vertexID, fragmentID, programID;
 
-    public Shader(String vertexPath, String fragmentPath) {
-        vertexFile = "#version 330 core\n" + "layout(location = 0) in vec3 position;\n"
-                + "layout(location = 1) in vec3 color;\n" + "out vec3 passColor;\n" + "void main(){\n"
-                + "gl_Position = vec4(position, 1.0);\n" + "passColor = color;\n" + "}";
-        fragmentFile = "#version 330 core\n" + "in vec3 passColor;\n" + "out vec4 outColor;\n"
-            + "void main(){\n" + "outColor = vec4(passColor, 1.0);\n" + "}";
+    public Shader(String vertexPath, String fragmentPath) throws Exception {
+        vertexFile = FileUtils.loadAsString(vertexPath);
+              //  "#version 330 core\n" + "layout(location = 0) in vec3 position;\n"
+                //+ "layout(location = 1) in vec3 color;\n" + "out vec3 passColor;\n" + "void main(){\n"
+                //+ "gl_Position = vec4(position, 1.0);\n" + "passColor = color;\n" + "}";
+        fragmentFile = FileUtils.loadAsString(fragmentPath);
+                //"#version 330 core\n" + "in vec3 passColor;\n" + "out vec4 outColor;\n"
+            //+ "void main(){\n" + "outColor = vec4(passColor, 1.0);\n" + "}";
     }
 
     public void create() {
