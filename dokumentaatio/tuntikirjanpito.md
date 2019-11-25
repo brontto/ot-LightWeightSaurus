@@ -9,5 +9,5 @@
 | 21.11. | 6    | Luokkia graffaa varten sekä shaderien implementointi |
 | 22.11. | 2	| Bugiträkkäystä |
 | 23.11. | 2    | Ei rendaa kuutiota vieläkään |
-| 24.11. | 2    | Kokeile kaikkea ja vola, värikäs kuutio näkyy |
-| Yhteensä | 21    | 
+| 24.11. | 4    | Kokeile kaikkea ja vola, värikäs kuutio näkyy |
+| Yhteensä | 23    | 
