@@ -1,6 +1,6 @@
-package Graphics;
+package graphics;
 
-import Maths.Vector3f;
+import maths.Vector3f;
 
 public class Vertex {
     private Vector3f position, color;

@@ -1,6 +1,6 @@
-package Graphics;
+package graphics;
 
-import Utility.FileUtils;
+import utility.FileUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 

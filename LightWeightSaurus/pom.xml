@@ -28,7 +28,12 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.3</version>
+                <configuration>
+                    <excludes>
+                        <exclude>Main/*</exclude>
 
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>coverage-initialize</id>
@@ -52,7 +57,7 @@
                 <configuration>
                     <forkCount>5</forkCount>
                     <reuseForks>true</reuseForks>
-                    <argLine>@{argLine} -XX:PermSize=254m -XX:MaxPermSize=512m</argLine>
+                    <argLine>@{argLine}</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -69,7 +74,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Main</mainClass>
+                                    <mainClass>main.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

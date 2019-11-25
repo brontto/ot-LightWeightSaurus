@@ -1,6 +1,6 @@
-package Engine;
+package engine;
 
-import Maths.Vector3f;
+import maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
@@ -45,13 +45,9 @@ public class Window {
         GLFW.glfwMakeContextCurrent(window);
         GL.createCapabilities();
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-
         createCallbacks();
-
         GLFW.glfwShowWindow(window);
-
         GLFW.glfwSwapInterval(1);
-
         time = System.currentTimeMillis();
     }
 

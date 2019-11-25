@@ -1,4 +1,4 @@
-package Graphics;
+package graphics;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;

@@ -1,4 +1,6 @@
-import Engine.Engine;
+package main;
+
+import engine.Engine;
 
 public class Main {
 

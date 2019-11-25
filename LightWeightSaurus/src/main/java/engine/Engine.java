@@ -1,34 +1,32 @@
-package Engine;
+package engine;
 
-import Graphics.Mesh;
-import Graphics.Renderer;
-import Graphics.Shader;
-import Graphics.Vertex;
-import Maths.Vector3f;
+import graphics.Mesh;
+import graphics.Renderer;
+import graphics.Shader;
+import graphics.Vertex;
+import maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
 
 public class Engine implements Runnable {
 
     public Thread thread;
     public Window window;
 
-    public final int WIDTH = 1280, HEIGHT = 720;
+    public static final int WIDTH = 1280, HEIGHT = 720;
 
     public Shader shader;
     public Renderer renderer;
-    public Mesh mesh = new Mesh(new Vertex[] {
-            new Vertex(new Vector3f(-0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.0f,0.0f)),
-            new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f,0.0f)),
-            new Vertex(new Vector3f( 0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 0.0f,1.0f)),
-            new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 1.0f,0.0f))
-    }, new int[] {
-            0, 1, 2,
-            0, 3, 2
+    public Mesh mesh = new Mesh(new Vertex[]{
+        new Vertex(new Vector3f(-0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 0.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f)),
+        new Vertex(new Vector3f(0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 0.0f, 1.0f)),
+        new Vertex(new Vector3f(0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 1.0f, 0.0f))
+    }, new int[]{
+        0, 1, 2,
+        0, 3, 2
     });
-
 
 
     private boolean keepRunning;
@@ -50,7 +48,7 @@ public class Engine implements Runnable {
         mesh.create();
         shader.create();
         //window.setFullScreen(true);
-        Input.Init(window.getWindow());
+        Input.init(window.getWindow());
         keepRunning = true;
     }
 

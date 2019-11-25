@@ -1,4 +1,4 @@
-package Engine;
+package engine;
 
 import org.lwjgl.glfw.*;
 
@@ -17,7 +17,7 @@ public class Input {
     private static GLFWMouseButtonCallback mouseButtons;
     private static GLFWScrollCallback mouseScroll;
 
-    public static void Init(Long window) {
+    public static void init(Long window) {
         keyboard = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -53,6 +53,7 @@ public class Input {
         GLFW.glfwSetMouseButtonCallback(window, mouseButtons);
         GLFW.glfwSetScrollCallback(window, mouseScroll);
     }
+
 
     public static void destroy() {
         keyboard.free();
