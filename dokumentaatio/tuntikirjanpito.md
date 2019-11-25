@@ -11,4 +11,5 @@
 | 23.11. | 2    | Ei rendaa kuutiota vieläkään |
 | 24.11. | 4    | Kokeile kaikkea ja vola, värikäs kuutio näkyy |
 | 25.11. | 2    | Testejä ja checkstyleä |
-| Yhteensä | 25    | 
+| 25.11. | 1    | Dokumentaatiota |
+| Yhteensä | 26    | 

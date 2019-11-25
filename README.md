@@ -10,6 +10,7 @@ Tämän hetken versio luo ikkunan harmaalla taustalla ja tulostaa hiiren kursori
 
 [Työaikakirjanpito](https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+[Arkkitehtuuri](https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ## Komentorivitoiminnot
 
