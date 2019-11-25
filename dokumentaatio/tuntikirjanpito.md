@@ -10,4 +10,5 @@
 | 22.11. | 2	| Bugiträkkäystä |
 | 23.11. | 2    | Ei rendaa kuutiota vieläkään |
 | 24.11. | 4    | Kokeile kaikkea ja vola, värikäs kuutio näkyy |
-| Yhteensä | 23    | 
+| 25.11. | 2    | Testejä ja checkstyleä |
+| Yhteensä | 25    | 
