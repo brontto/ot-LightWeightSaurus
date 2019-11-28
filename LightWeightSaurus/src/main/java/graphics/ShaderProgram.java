@@ -35,7 +35,7 @@ public class ShaderProgram {
         glShaderSource(shaderId, shaderCode);
         glCompileShader(shaderId);
 
-        if(glGetShaderi(shaderId, GL_COMPILE_STATUS) == 0){
+        if(glGetShaderi(shaderId, GL_COMPILE_STATUS) == GL_FALSE){
             throw new Exception("Error compiling Shader code: " + glGetShaderInfoLog(shaderId, 1024));
         }
 
@@ -46,7 +46,7 @@ public class ShaderProgram {
 
     public void link() throws Exception {
         glLinkProgram(programID);
-        if(glGetProgrami(programID, GL_VALIDATE_STATUS) == 0) {
+        if(glGetProgrami(programID, GL_LINK_STATUS) == 0) {
             throw new Exception("Error linking Shader code: " + glGetProgramInfoLog(programID, 1024));
         }
 
