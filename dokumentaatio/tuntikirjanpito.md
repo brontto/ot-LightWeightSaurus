@@ -12,4 +12,6 @@
 | 24.11. | 4    | Kokeile kaikkea ja vola, värikäs kuutio näkyy |
 | 25.11. | 2    | Testejä ja checkstyleä |
 | 25.11. | 1    | Dokumentaatiota |
-| Yhteensä | 26    | 
+| 27.11. | 4 	| Rendauksen opiskelua ja arkkitehtuurin uudelleen suunnittelua |
+| 28.11. | 6    | Koodin parantelua ja pari uutta luokkaa |
+| Yhteensä | 36    | 

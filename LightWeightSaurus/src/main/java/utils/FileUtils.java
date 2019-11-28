@@ -1,4 +1,4 @@
-package utility;
+package utils;
 
 import java.io.InputStream;
 import java.util.Scanner;

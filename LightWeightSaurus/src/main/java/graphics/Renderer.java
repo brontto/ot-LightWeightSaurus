@@ -1,27 +1,51 @@
 package graphics;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL30;
+import engine.Window;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
 
 public class Renderer {
-    private Shader shader;
+    private ShaderProgram shaderProgram;
 
-    public Renderer(Shader shader) {
-        this.shader = shader;
+    public Renderer() {
     }
 
-    public void renderMesh(Mesh mesh) {
-        GL30.glBindVertexArray(mesh.getVAO());
-        GL30.glEnableVertexAttribArray(0);
-        GL30.glEnableVertexAttribArray(1);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, mesh.getIBO());
-        shader.bind();
-        GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getIndices().length, GL11.GL_UNSIGNED_INT, 0);
-        shader.unbind();
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
-        GL30.glDisableVertexAttribArray(0);
-        GL30.glDisableVertexAttribArray(1);
-        GL30.glBindVertexArray(0);
+    public void init() throws Exception {
+        shaderProgram = new ShaderProgram();
+        shaderProgram.createVertexShader("/shaders/mainVertex.glsl");
+        shaderProgram.createFragmentShader("/shaders/mainFragment.glsl");
+        shaderProgram.link();
+    }
+
+    public void render(Mesh mesh){
+        clear();
+        shaderProgram.bind();
+
+        //Draw mesh
+        glBindVertexArray(mesh.getVaoId());
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.getIdxVboId());
+        glDrawElements(GL_TRIANGLES, mesh.getVertexCount(), GL_UNSIGNED_INT, 0);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+        glBindVertexArray(0);
+
+        shaderProgram.unbind();
+    }
+
+    private void clear() {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+
+    public void destroy() {
+        if(shaderProgram != null){
+            shaderProgram.destroy();
+        }
     }
 }

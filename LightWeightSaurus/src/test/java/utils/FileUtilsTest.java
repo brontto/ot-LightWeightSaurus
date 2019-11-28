@@ -1,4 +1,4 @@
-package utility;
+package utils;
 
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ public class FileUtilsTest {
 
     @Test
     public void loadAsString() throws Exception {
-        String string = FileUtils.loadAsString("/Test/Test.txt");
+        String string = FileUtils.loadAsString("/test/Test.txt");
         assertEquals("This is test file", string);
     }
 }

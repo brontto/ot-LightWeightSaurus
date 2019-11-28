@@ -1,82 +1,86 @@
 package engine;
 
-import graphics.Mesh;
-import graphics.Renderer;
-import graphics.Shader;
-import graphics.Vertex;
-import maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Engine implements Runnable {
 
-    public Thread thread;
-    public Window window;
+    public static final int TARGET_FPS = 75;
+
+    public static final int TARGET_UPS = 30;
 
     public static final int WIDTH = 1280, HEIGHT = 720;
 
-    public Shader shader;
-    public Renderer renderer;
-    public Mesh mesh = new Mesh(new Vertex[]{
-        new Vertex(new Vector3f(-0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 0.0f, 0.0f)),
-        new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f)),
-        new Vertex(new Vector3f(0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 0.0f, 1.0f)),
-        new Vertex(new Vector3f(0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 1.0f, 0.0f))
-    }, new int[]{
-        0, 1, 2,
-        0, 3, 2
-    });
+    public Window window;
+
+    private IGameLogic gameLogic;
+
 
 
     private boolean keepRunning;
 
-    public void start() {
-        thread = new Thread(this);
-        thread.start(); //tää kutsuu run metodia
+    public Engine(String windowTitle, boolean vSync, IGameLogic gameLogic) throws Exception {
+        window = new Window(windowTitle, WIDTH, HEIGHT, vSync);
+        this.gameLogic = gameLogic;
     }
 
+
+
+
+
     public void init() throws Exception {
-
-        window = new Window(WIDTH, HEIGHT, "GAME");
-        shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
-        renderer = new Renderer(shader);
-
-        window.setBackgroundColor(1.0f, 0.5f, 0.5f);
-
-        window.create();
-        mesh.create();
-        shader.create();
-        //window.setFullScreen(true);
-        Input.init(window.getWindow());
-        keepRunning = true;
+        window.init();
+        Input.init(window.getWindowHandle());
+        Time.init();
+        gameLogic.init();
     }
 
     public void run() {
         try {
             init();
+            loop();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            destroy();
         }
+
+
+    }
+
+    private void loop() {
+
+        float elapsedTime;
+        float accumulator = 0f;
+        float interval = 1f/ TARGET_UPS;
+
+        keepRunning = true;
         while (keepRunning) {
-            update();
+            elapsedTime = Time.getElapsedTime();
+            accumulator += elapsedTime;
+
+            while(accumulator >= interval){
+                update(interval);
+                accumulator -= interval;
+            }
+
             render();
 
+            if(!window.isvSync()){
+                sync();
+            }
         }
-        destroy();
     }
 
 
-    private void update() {
-        //System.out.println("Updating Game");
-        window.update();
+
+    private void update(float interval) {
+
+        gameLogic.update(interval);
 
         if (Input.isKeyDown(GLFW_KEY_ESCAPE) || window.close()) {
             keepRunning = false;
-        }
-
-        if (Input.isKeyDown(GLFW_KEY_F11)) {
-            window.setFullScreen(!window.isFullScreen());
         }
 
         if (Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
@@ -84,18 +88,27 @@ public class Engine implements Runnable {
         }
     }
 
+    private void sync() {
+        float loopSlot = 1f / TARGET_FPS;
+        double endTime = Time.getLastLoopTime() + loopSlot;
+        while (Time.getTime() < endTime) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ie) {
+            }
+        }
+    }
+
 
     private void render() {
-        //System.out.println("Rendering Game");
-        renderer.renderMesh(mesh);
-        window.swapBuffers();
+        gameLogic.render(window);
+        window.update();
     }
 
     private void destroy() {
         Input.destroy();
         window.destroy();
-        mesh.destroy();
-        shader.destroy();
+        gameLogic.destroy();
         GLFW.glfwTerminate();
     }
 }

@@ -2,53 +2,78 @@ package engine;
 
 import maths.Vector3f;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+
 public class Window {
+    private Vector3f background;
     private int width, height;
     private String title;
-    private long window;
-    private int frames;
-    private static long time;
-    private Vector3f background = new Vector3f(0, 0, 0);
+    private long windowHandle;
     private GLFWWindowSizeCallback sizeCallback;
     private boolean isResized;
     private boolean isFullscreen;
-    private int[] windowPosX = new int[1], windowPosY = new int[1];
 
-    public Window(int width, int height, String title) {
+    private boolean vSync;
+
+    public Window(String title, int width, int height, boolean vSync) {
         this.width = width;
         this.height = height;
         this.title = title;
+        this.isResized = false;
+        this.vSync = vSync;
+        background = new Vector3f(1.0f, 0.5f, 0.5f);
     }
 
-    public void create() {
+    public void init() {
+        //error callback.
+        GLFWErrorCallback.createPrint(System.err).set();
+
+        //init glfw
         if (!GLFW.glfwInit()) {
-            System.err.println("ERROR: GLFW wasn't initializied");
-            return;
+            throw new IllegalStateException("Unable to init GLFW");
         }
 
-        window = GLFW.glfwCreateWindow(width, height, title, isFullscreen ? GLFW.glfwGetPrimaryMonitor() : 0, 0);
 
-        if (window == 0) {
-            System.err.println("ERROR: Window wasn't created");
-            return;
+        glfwDefaultWindowHints(); // optional, the current window hints are already the default
+        glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
+        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); // the window will be resizable
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+        windowHandle = GLFW.glfwCreateWindow(width, height, title, isFullscreen ? GLFW.glfwGetPrimaryMonitor() : 0, 0);
+
+        if (windowHandle == 0) {
+            throw new RuntimeException("Failed to create GLFW window");
         }
 
-        GLFWVidMode videoMode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
-        windowPosX[0] = (videoMode.width() - width) / 2;
-        windowPosY[0] = (videoMode.height() - height) / 2;
-        GLFW.glfwSetWindowPos(window, windowPosX[0], windowPosY[0]);
-        GLFW.glfwMakeContextCurrent(window);
-        GL.createCapabilities();
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
         createCallbacks();
-        GLFW.glfwShowWindow(window);
-        GLFW.glfwSwapInterval(1);
-        time = System.currentTimeMillis();
+
+        GLFWVidMode videoMode = glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
+
+        glfwSetWindowPos(windowHandle,
+                (videoMode.width() - width) / 2,
+                (videoMode.height() - height) / 2
+        );
+
+        glfwMakeContextCurrent(windowHandle);
+
+        if(isvSync()){
+            glfwSwapInterval(1);
+        }
+
+        GLFW.glfwShowWindow(windowHandle);
+
+        GL.createCapabilities();
+        glClearColor(background.getX(), background.getY(), background.getZ(), 1.0f);
     }
 
     private void createCallbacks() {
@@ -60,7 +85,7 @@ public class Window {
                 isResized = true;
             }
         };
-        GLFW.glfwSetWindowSizeCallback(window, sizeCallback);
+        GLFW.glfwSetWindowSizeCallback(windowHandle, sizeCallback);
     }
 
     public void update() {
@@ -68,52 +93,33 @@ public class Window {
             GL11.glViewport(0, 0, width, height);
             isResized = false;
         }
-        GL11.glClearColor(background.getX(), background.getY(), background.getZ(), 1.0f);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+
+        glfwSwapBuffers(windowHandle);
         GLFW.glfwPollEvents();
-        frames++;
-        if (System.currentTimeMillis() > time + 1000) {
-            GLFW.glfwSetWindowTitle(window, title + " | FPS: " + frames);
-            time = System.currentTimeMillis();
-            frames = 0;
-        }
     }
 
-    public void swapBuffers() {
-        GLFW.glfwSwapBuffers(window);
-    }
 
     public boolean shouldClose() {
-        return GLFW.glfwWindowShouldClose(window);
+        return GLFW.glfwWindowShouldClose(windowHandle);
     }
 
     public void destroy() {
         sizeCallback.free();
-        GLFW.glfwWindowShouldClose(window);
-        GLFW.glfwDestroyWindow(window);
+        GLFW.glfwWindowShouldClose(windowHandle);
+        GLFW.glfwDestroyWindow(windowHandle);
     }
 
     public void setBackgroundColor(float r, float g, float b) {
         background.set(r, g, b);
+        glClearColor(r, g, b, 1.0f);
     }
 
     public boolean isFullScreen() {
         return isFullscreen;
     }
 
-    public void setFullScreen(boolean isFullscreen) {
-        this.isFullscreen = isFullscreen;
-        isResized = true;
-        if (isFullscreen) {
-            GLFW.glfwGetWindowPos(window, windowPosX, windowPosY);
-            GLFW.glfwSetWindowMonitor(window, GLFW.glfwGetPrimaryMonitor(), 0, 0, width, height, 0);
-        } else {
-            GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 0);
-        }
-    }
-
     public boolean close() {
-        return GLFW.glfwWindowShouldClose(window);
+        return GLFW.glfwWindowShouldClose(windowHandle);
     }
 
     public int getWidth() {
@@ -128,7 +134,11 @@ public class Window {
         return title;
     }
 
-    public long getWindow() {
-        return window;
+    public long getWindowHandle() {
+        return windowHandle;
+    }
+
+    public boolean isvSync() {
+        return vSync;
     }
 }

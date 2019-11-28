@@ -1,9 +1,9 @@
-#version 330 core
+#version 330
 
-in vec3 passColor;
+in  vec3 exColour;
+out vec4 fragColor;
 
-out vec4 outColor;
-
-void main(){
-    outColor = vec4(passColor, 1.0);
+void main()
+{
+	fragColor = vec4(exColour, 1.0);
 }
