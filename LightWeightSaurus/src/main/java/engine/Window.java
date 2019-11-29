@@ -66,7 +66,7 @@ public class Window {
 
         glfwMakeContextCurrent(windowHandle);
 
-        if(isvSync()){
+        if (isvSync()) {
             glfwSwapInterval(1);
         }
 

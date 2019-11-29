@@ -17,7 +17,10 @@ public class Input {
     private static GLFWMouseButtonCallback mouseButtons;
     private static GLFWScrollCallback mouseScroll;
 
+    private static boolean inited;
+
     public static void init(Long window) {
+
         keyboard = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -52,8 +55,9 @@ public class Input {
         GLFW.glfwSetCursorPosCallback(window, mouseMove);
         GLFW.glfwSetMouseButtonCallback(window, mouseButtons);
         GLFW.glfwSetScrollCallback(window, mouseScroll);
-    }
 
+        inited = true;
+    }
 
     public static void destroy() {
         keyboard.free();
@@ -100,5 +104,9 @@ public class Input {
 
     public static boolean isButtonDown(int key) {
         return buttons[key];
+    }
+
+    public static boolean isInited() {
+        return inited;
     }
 }

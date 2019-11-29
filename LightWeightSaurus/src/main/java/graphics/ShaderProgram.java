@@ -13,8 +13,8 @@ public class ShaderProgram {
 
     public ShaderProgram() throws Exception {
         programID = glCreateProgram();
-        if(programID == 0){
-            throw  new Exception("Could not create Shader");
+        if (programID == 0) {
+            throw new Exception("Could not create Shader");
         }
     }
 
@@ -28,14 +28,14 @@ public class ShaderProgram {
 
     public int createShader(String shaderCode, int shaderType) throws Exception {
         int shaderId = glCreateShader(shaderType);
-        if(shaderId == 0){
+        if (shaderId == 0) {
             throw new Exception("Error creationg shader. Type: " + shaderType);
         }
 
         glShaderSource(shaderId, shaderCode);
         glCompileShader(shaderId);
 
-        if(glGetShaderi(shaderId, GL_COMPILE_STATUS) == GL_FALSE){
+        if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == GL_FALSE) {
             throw new Exception("Error compiling Shader code: " + glGetShaderInfoLog(shaderId, 1024));
         }
 
@@ -46,20 +46,20 @@ public class ShaderProgram {
 
     public void link() throws Exception {
         glLinkProgram(programID);
-        if(glGetProgrami(programID, GL_LINK_STATUS) == 0) {
+        if (glGetProgrami(programID, GL_LINK_STATUS) == 0) {
             throw new Exception("Error linking Shader code: " + glGetProgramInfoLog(programID, 1024));
         }
 
-        if(vertexShaderID != 0) {
+        if (vertexShaderID != 0) {
             glDetachShader(programID, vertexShaderID);
         }
 
-        if(fragmentShaderID != 0) {
+        if (fragmentShaderID != 0) {
             glDetachShader(programID, fragmentShaderID);
         }
 
         glValidateProgram(programID);
-        if(glGetProgrami(programID, GL_VALIDATE_STATUS) == 0) {
+        if (glGetProgrami(programID, GL_VALIDATE_STATUS) == 0) {
             System.out.println("Waringn validating Shader code: " + glGetShaderInfoLog(programID, 1024));
         }
     }
@@ -74,7 +74,7 @@ public class ShaderProgram {
 
     public void destroy() {
         unbind();
-        if(programID != 0) {
+        if (programID != 0) {
             glDeleteProgram(programID);
         }
     }

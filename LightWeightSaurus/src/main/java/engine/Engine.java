@@ -17,16 +17,12 @@ public class Engine implements Runnable {
     private IGameLogic gameLogic;
 
 
-
     private boolean keepRunning;
 
     public Engine(String windowTitle, boolean vSync, IGameLogic gameLogic) throws Exception {
         window = new Window(windowTitle, WIDTH, HEIGHT, vSync);
         this.gameLogic = gameLogic;
     }
-
-
-
 
 
     public void init() throws Exception {
@@ -42,7 +38,7 @@ public class Engine implements Runnable {
             loop();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             destroy();
         }
 
@@ -53,26 +49,25 @@ public class Engine implements Runnable {
 
         float elapsedTime;
         float accumulator = 0f;
-        float interval = 1f/ TARGET_UPS;
+        float interval = 1f / TARGET_UPS;
 
         keepRunning = true;
         while (keepRunning) {
             elapsedTime = Time.getElapsedTime();
             accumulator += elapsedTime;
 
-            while(accumulator >= interval){
+            while (accumulator >= interval) {
                 update(interval);
                 accumulator -= interval;
             }
 
             render();
 
-            if(!window.isvSync()){
+            if (!window.isvSync()) {
                 sync();
             }
         }
     }
-
 
 
     private void update(float interval) {
@@ -110,5 +105,9 @@ public class Engine implements Runnable {
         window.destroy();
         gameLogic.destroy();
         GLFW.glfwTerminate();
+    }
+
+    public IGameLogic getGameLogic() {
+        return gameLogic;
     }
 }

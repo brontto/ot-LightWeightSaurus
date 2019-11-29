@@ -14,4 +14,5 @@
 | 25.11. | 1    | Dokumentaatiota |
 | 27.11. | 4 	| Rendauksen opiskelua ja arkkitehtuurin uudelleen suunnittelua |
 | 28.11. | 6    | Koodin parantelua ja pari uutta luokkaa |
-| Yhteensä | 36    | 
+| 29.11. | 4    | Testejä ja muuta säätöä |
+| Yhteensä | 40    | 

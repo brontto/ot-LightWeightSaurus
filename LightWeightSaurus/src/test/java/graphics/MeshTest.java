@@ -10,55 +10,39 @@ import static org.junit.Assert.*;
 public class MeshTest {
 
     Mesh mesh;
+    Window window;
 
-//    @Before
-//    public void setUp(){
-//        mesh = new Mesh(new Vertex[]{
-//                new Vertex(new Vector3f(-0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 0.0f, 0.0f)),
-//                new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f)),
-//                new Vertex(new Vector3f(0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 0.0f, 1.0f)),
-//                new Vertex(new Vector3f(0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 1.0f, 0.0f))
-//        }, new int[]{
-//                0, 1, 2,
-//                0, 3, 2
-//        });
-//    }
-    /*@Test
-    public void create() {
-        Window window = new Window(100, 100, "GAME");
+    @Before
+    public void setUp() throws Exception {
+        window = new Window("TEST", 100, 100, false);
         window.init();
-        mesh.create();
-        assertNotEquals(0, mesh.getIBO());
-        assertNotEquals(0, mesh.getVAO());
-        assertNotEquals(0, mesh.getCBO());
-        assertNotEquals(0, mesh.getPBO());
-    }*/
+        Vector3f[] vertices = new Vector3f[]{
+                new Vector3f(-0.5f, 0.5f, 0.0f),
+                new Vector3f(-0.5f, -0.5f, 0.0f),
+                new Vector3f(0.5f, -0.5f, 0.0f),
+                new Vector3f(0.5f, 0.5f, 0.0f)
+        };
+        Vector3f[] colors = new Vector3f[]{
+                new Vector3f(0.5f, 0.0f, 0.0f),
+                new Vector3f(0.0f, 0.5f, 0.0f),
+                new Vector3f(0.0f, 0.0f, 0.5f),
+                new Vector3f(0.0f, 0.5f, 0.5f)
+        };
+        int[] indices = new int[]{
+                0, 1, 3, 3, 1, 2,
+        };
+        mesh = new Mesh(vertices, colors, indices);
+    }
+    @Test
+    public void constructor() {
+        assertNotEquals(0, mesh.getColorVboId());
+        assertNotEquals(0, mesh.getIdxVboId());
+        assertNotEquals(0, mesh.getPosVboId());
+        assertNotEquals(0, mesh.getVaoId());
+        assertNotEquals(0, mesh.getVertexCount());
+    }
 
     @Test
     public void destroy() {
-    }
-
-    @Test
-    public void getVertices() {
-    }
-
-    @Test
-    public void getIndices() {
-    }
-
-    @Test
-    public void getVAO() {
-    }
-
-    @Test
-    public void getPBO() {
-    }
-
-    @Test
-    public void getCBO() {
-    }
-
-    @Test
-    public void getIBO() {
     }
 }

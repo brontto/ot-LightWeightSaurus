@@ -19,7 +19,7 @@ public class Renderer {
         shaderProgram.link();
     }
 
-    public void render(Mesh mesh){
+    public void render(Mesh mesh) {
         clear();
         shaderProgram.bind();
 
@@ -44,7 +44,7 @@ public class Renderer {
     }
 
     public void destroy() {
-        if(shaderProgram != null){
+        if (shaderProgram != null) {
             shaderProgram.destroy();
         }
     }

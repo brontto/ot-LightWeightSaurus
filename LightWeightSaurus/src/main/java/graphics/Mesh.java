@@ -18,7 +18,6 @@ public class Mesh {
     private final int idxVboId;
 
 
-
     private final int vertexCount;
 
     public Mesh(Vector3f[] vertices, Vector3f[] colors, int[] indices) {
@@ -26,7 +25,7 @@ public class Mesh {
         FloatBuffer colorBuffer = null;
         IntBuffer indicesBuffer = null;
 
-        try{
+        try {
             vertexCount = indices.length;
 
             vaoId = glGenVertexArrays();
@@ -70,7 +69,7 @@ public class Mesh {
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindVertexArray(0);
 
-        }finally {
+        } finally {
             if (posBuffer != null) {
                 MemoryUtil.memFree(posBuffer);
             }
