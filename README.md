@@ -12,6 +12,8 @@ Tämän hetken versio luo ikkunan harmaalla taustalla ja tulostaa hiiren kursori
 
 [Arkkitehtuuri](https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/kayttoohje.md)
+
 ## Komentorivitoiminnot
 
 ### Suoritus 
