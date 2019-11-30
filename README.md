@@ -2,7 +2,6 @@
 # LWS - LightWeightSaurus 3d-moottori, ohjelmistotekniikan harjoitustyö
 
 Ohjelman tarkoitus on mahdollistaa 3d-grafiikan piirtämisen tietokoneen ruudulle. 
-Tämän hetken versio luo ikkunan harmaalla taustalla ja tulostaa hiiren kursorin sijainnin komentoriville hiiren vasenta painiketta painettaessa.
 
 ## Dokumentaatio
 
