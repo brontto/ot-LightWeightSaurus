@@ -54,6 +54,7 @@ public class Window {
         if (windowHandle == 0) {
             throw new RuntimeException("Failed to create GLFW window");
         }
+        
 
         createCallbacks();
 

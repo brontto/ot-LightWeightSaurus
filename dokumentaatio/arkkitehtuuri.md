@@ -8,3 +8,5 @@ Engine luokan tehtävä on käynnistää ja ylläpitää ns. renderlooppia sekä
 
 <img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/alustavatluokat.png?raw=true" width="400">
 
+Seuraava kaavio kuvaa käynnistyksen ja suorituksen aikaista toimintaa. 
+
