@@ -25,19 +25,38 @@ public class DummyGame implements IGameLogic {
     public void init(Window window) throws Exception {
         renderer.init(window);
         Vector3f[] vertices = new Vector3f[]{
-            new Vector3f(-0.5f, 0.5f, -1.05f),
-            new Vector3f(-0.5f, -0.5f, -1.05f),
-            new Vector3f(0.5f, -0.5f, -1.05f),
-            new Vector3f(0.5f, 0.5f, -1.05f)
+            new Vector3f(-0.5f,  0.5f,  0.5f),
+            new Vector3f(-0.5f, -0.5f,  0.5f),
+            new Vector3f(0.5f, -0.5f,  0.5f),
+            new Vector3f(0.5f,  0.5f,  0.5f),
+            new Vector3f(-0.5f,  0.5f, -0.5f),
+            new Vector3f(0.5f,  0.5f, -0.5f),
+            new Vector3f(-0.5f, -0.5f, -0.5f),
+            new Vector3f(0.5f, -0.5f, -0.5f)
         };
         Vector3f[] colors = new Vector3f[]{
+            new Vector3f(0.5f, 0.0f, 0.0f),
+            new Vector3f(0.0f, 0.5f, 0.0f),
+            new Vector3f(0.0f, 0.0f, 0.5f),
+            new Vector3f(0.0f, 0.5f, 0.5f),
             new Vector3f(0.5f, 0.0f, 0.0f),
             new Vector3f(0.0f, 0.5f, 0.0f),
             new Vector3f(0.0f, 0.0f, 0.5f),
             new Vector3f(0.0f, 0.5f, 0.5f)
         };
         int[] indices = new int[]{
+            // Front face
             0, 1, 3, 3, 1, 2,
+            // Top Face
+            4, 0, 3, 5, 4, 3,
+            // Right face
+            3, 2, 7, 5, 3, 7,
+            // Left face
+            6, 1, 0, 6, 0, 4,
+            // Bottom face
+            2, 1, 6, 2, 6, 7,
+            // Back face
+            7, 6, 4, 7, 4, 5,
         };
 
         mesh = new Mesh(vertices, colors, indices);
@@ -91,7 +110,7 @@ public class DummyGame implements IGameLogic {
             if ( rotation > 360 ) {
                 rotation = 0;
             }
-            gameItem.setRotation(0, 0, rotation);
+            gameItem.setRotation(rotation, rotation, rotation);
         }
     }
 

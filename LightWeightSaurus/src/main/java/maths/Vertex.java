@@ -1,4 +1,4 @@
-package graphics;
+package maths;
 
 import maths.Vector3f;
 

@@ -1,6 +1,7 @@
 package graphics;
 
 import maths.Vector3f;
+import maths.Vertex;
 import org.junit.Before;
 import org.junit.Test;
 

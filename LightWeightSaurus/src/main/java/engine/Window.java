@@ -75,6 +75,7 @@ public class Window {
 
         GL.createCapabilities();
         glClearColor(background.getX(), background.getY(), background.getZ(), 1.0f);
+        glEnable(GL_DEPTH_TEST);
     }
 
     private void createCallbacks() {
