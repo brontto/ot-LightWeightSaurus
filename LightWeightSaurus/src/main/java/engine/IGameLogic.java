@@ -3,7 +3,7 @@ package engine;
 import engine.Window;
 
 public interface IGameLogic {
-    void init() throws Exception;
+    void init(Window window) throws Exception;
 
     void update(float interval);
 

@@ -29,7 +29,7 @@ public class Engine implements Runnable {
         window.init();
         Input.init(window.getWindowHandle());
         Time.init();
-        gameLogic.init();
+        gameLogic.init(window);
     }
 
     public void run() {
