@@ -5,17 +5,17 @@ import engine.Input;
 import engine.Window;
 import graphics.Mesh;
 import graphics.Renderer;
-import maths.Vector3f;
+import org.joml.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class DummyGame implements IGameLogic {
 
-    private float color = 0.0f;
-
     private final Renderer renderer;
 
     private Mesh mesh;
+
+    private GameItem[] gameItems;
 
     public DummyGame() {
         this.renderer = new Renderer();
@@ -41,32 +41,70 @@ public class DummyGame implements IGameLogic {
         };
 
         mesh = new Mesh(vertices, colors, indices);
-
+        GameItem gameItem = new GameItem(mesh);
+        gameItem.setPosition(0, 0, -2);
+        gameItems = new GameItem[] { gameItem };
     }
 
     @Override
     public void update(float interval) {
+        int displyInc = 0;
+        int displxInc = 0;
+        int displzInc = 0;
+        int scaleInc = 0;
         if (Input.isKeyDown(GLFW_KEY_UP)) {
-            color += 0.01;
+            displyInc = 1;
         } else if (Input.isKeyDown(GLFW_KEY_DOWN)) {
-            color -= 0.01;
+            displyInc = -1;
+        } else if (Input.isKeyDown(GLFW_KEY_LEFT)) {
+            displxInc = -1;
+        } else if (Input.isKeyDown(GLFW_KEY_RIGHT)) {
+            displxInc = 1;
+        } else if (Input.isKeyDown(GLFW_KEY_A)) {
+            displzInc = -1;
+        } else if (Input.isKeyDown(GLFW_KEY_Q)) {
+            displzInc = 1;
+        } else if (Input.isKeyDown(GLFW_KEY_Z)) {
+            scaleInc = -1;
+        } else if (Input.isKeyDown(GLFW_KEY_X)) {
+            scaleInc = 1;
         }
-        if (color > 1) {
-            color = 1.0f;
-        } else if (color < 0) {
-            color = 0.0f;
+
+        for (GameItem gameItem : gameItems) {
+            // Update position
+            org.joml.Vector3f itemPos = gameItem.getPosition();
+            float posX = itemPos.x + displxInc * 0.01f;
+            float posY = itemPos.y + displyInc * 0.01f;
+            float posZ = itemPos.z + displzInc * 0.01f;
+            gameItem.setPosition(posX, posY, posZ);
+
+            // Update scale
+            float scale = gameItem.getScale();
+            scale += scaleInc * 0.05f;
+            if ( scale < 0 ) {
+                scale = 0;
+            }
+            gameItem.setScale(scale);
+
+            // Update rotation angle
+            float rotation = gameItem.getRotation().z + 1.5f;
+            if ( rotation > 360 ) {
+                rotation = 0;
+            }
+            gameItem.setRotation(0, 0, rotation);
         }
     }
 
     @Override
     public void render(Window window) {
-        window.setBackgroundColor(color, color, color);
-        renderer.render(mesh);
+        renderer.render(window, gameItems);
     }
 
     @Override
     public void destroy() {
         renderer.destroy();
-        mesh.destroy();
+        for (GameItem gameItem : gameItems){
+            gameItem.getMesh().destroy();
+        }
     }
 }

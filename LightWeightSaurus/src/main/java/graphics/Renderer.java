@@ -1,6 +1,7 @@
 package graphics;
 
 import engine.Window;
+import game.GameItem;
 import org.joml.Matrix4f;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -19,7 +20,10 @@ public class Renderer {
 
     private ShaderProgram shaderProgram;
 
+    private final Transformation transformation;
+
     public Renderer() {
+        transformation = new Transformation();
     }
 
     public void init(Window window) throws Exception {
@@ -31,26 +35,32 @@ public class Renderer {
         float aspectRatio = (float) window.getWidth() / window.getHeight();
         projectionMatrix = new Matrix4f().perspective(FOV, aspectRatio, Z_NEAR, Z_FAR);
         shaderProgram.createUniforms("projectionMatrix");
+        shaderProgram.createUniforms("worldMatrix");
+
+        window.setClearColor(0, 0, 0, 0);
     }
 
-    public void render(Mesh mesh) {
+    public void render(Window window, GameItem[] gameItems) {
         clear();
 
         shaderProgram.bind();
+
+        Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV,
+                window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
         shaderProgram.setUniforms("projectionMatrix", projectionMatrix);
 
-        //Draw mesh
-        glBindVertexArray(mesh.getVaoId());
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
+        for (GameItem gameItem : gameItems) {
+            Matrix4f worldMatrix =
+                    transformation.getWorldMatrix(
+                            gameItem.getPosition(),
+                            gameItem.getRotation(),
+                            gameItem.getScale());
+                    shaderProgram.setUniforms("worldMatrix", worldMatrix);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.getIdxVboId());
-        glDrawElements(GL_TRIANGLES, mesh.getVertexCount(), GL_UNSIGNED_INT, 0);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+                    gameItem.getMesh().render();
+        }
 
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
-        glBindVertexArray(0);
+
 
         shaderProgram.unbind();
     }

@@ -1,6 +1,6 @@
 package engine;
 
-import maths.Vector3f;
+import maths.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -12,7 +12,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
-    private Vector3f background;
+    private Vector4f background;
     private int width, height;
     private String title;
     private long windowHandle;
@@ -28,7 +28,7 @@ public class Window {
         this.title = title;
         this.isResized = false;
         this.vSync = vSync;
-        background = new Vector3f(1.0f, 0.5f, 0.5f);
+        background = new Vector4f(1.0f, 0.5f, 0.5f);
     }
 
     public void init() {
@@ -110,9 +110,14 @@ public class Window {
         GLFW.glfwDestroyWindow(windowHandle);
     }
 
-    public void setBackgroundColor(float r, float g, float b) {
+    public void setClearColor(float r, float g, float b) {
         background.set(r, g, b);
         glClearColor(r, g, b, 1.0f);
+    }
+
+    public void setClearColor(float r, float g, float b, float alpha){
+        background.set(r, g, b, alpha);
+        glClearColor(r, g, b, alpha);
     }
 
     public boolean isFullScreen() {

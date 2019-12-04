@@ -1,7 +1,7 @@
 package graphics;
 
 import engine.Window;
-import maths.Vector3f;
+import org.joml.Vector3f;
 import org.junit.Before;
 import org.junit.Test;
 

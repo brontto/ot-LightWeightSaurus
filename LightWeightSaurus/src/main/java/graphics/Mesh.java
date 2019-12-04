@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 
-import maths.Vector3f;
+import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
@@ -36,9 +36,9 @@ public class Mesh {
             posBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
             float[] positionData = new float[vertices.length * 3];
             for (int i = 0; i < vertices.length; i++) {
-                positionData[i * 3] = vertices[i].getX();
-                positionData[i * 3 + 1] = vertices[i].getY();
-                positionData[i * 3 + 2] = vertices[i].getZ();
+                positionData[i * 3] = vertices[i].x;
+                positionData[i * 3 + 1] = vertices[i].y;
+                positionData[i * 3 + 2] = vertices[i].z;
             }
             posBuffer.put(positionData).flip();
             glBindBuffer(GL_ARRAY_BUFFER, posVboId);
@@ -50,9 +50,9 @@ public class Mesh {
             colorBuffer = MemoryUtil.memAllocFloat(colors.length * 3);
             float[] colorData = new float[colors.length * 3];
             for (int i = 0; i < colors.length; i++) {
-                colorData[i * 3] = colors[i].getX();
-                colorData[i * 3 + 1] = colors[i].getY();
-                colorData[i * 3 + 2] = colors[i].getZ();
+                colorData[i * 3] = colors[i].x;
+                colorData[i * 3 + 1] = colors[i].y;
+                colorData[i * 3 + 2] = colors[i].z;
             }
             colorBuffer.put(colorData).flip();
             glBindBuffer(GL_ARRAY_BUFFER, colorVboId);
@@ -80,6 +80,21 @@ public class Mesh {
                 MemoryUtil.memFree(indicesBuffer);
             }
         }
+    }
+
+    public void render(){
+        //Draw mesh
+        glBindVertexArray(getVaoId());
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, getIdxVboId());
+        glDrawElements(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+        glBindVertexArray(0);
     }
 
     public void destroy() {
