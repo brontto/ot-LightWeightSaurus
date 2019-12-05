@@ -5,8 +5,6 @@ import game.GameItem;
 import org.joml.Matrix4f;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL30.*;
 
 public class Renderer {
 
@@ -34,8 +32,9 @@ public class Renderer {
 
         float aspectRatio = (float) window.getWidth() / window.getHeight();
         projectionMatrix = new Matrix4f().perspective(FOV, aspectRatio, Z_NEAR, Z_FAR);
-        shaderProgram.createUniforms("projectionMatrix");
-        shaderProgram.createUniforms("worldMatrix");
+        shaderProgram.createUniform("projectionMatrix");
+        shaderProgram.createUniform("worldMatrix");
+        shaderProgram.createUniform("texture_sampler");
 
         window.setClearColor(0, 0, 0, 0);
     }
@@ -47,15 +46,16 @@ public class Renderer {
 
         Matrix4f projectionMatrix = transformation.getProjectionMatrix(FOV,
                 window.getWidth(), window.getHeight(), Z_NEAR, Z_FAR);
-        shaderProgram.setUniforms("projectionMatrix", projectionMatrix);
+        shaderProgram.setUniform("projectionMatrix", projectionMatrix);
 
+        shaderProgram.setUniform("texture_sampler", 0);
         for (GameItem gameItem : gameItems) {
             Matrix4f worldMatrix =
                     transformation.getWorldMatrix(
                             gameItem.getPosition(),
                             gameItem.getRotation(),
                             gameItem.getScale());
-                    shaderProgram.setUniforms("worldMatrix", worldMatrix);
+                    shaderProgram.setUniform("worldMatrix", worldMatrix);
 
                     gameItem.getMesh().render();
         }

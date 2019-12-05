@@ -77,10 +77,6 @@ public class Engine implements Runnable {
         if (Input.isKeyDown(GLFW_KEY_ESCAPE) || window.close()) {
             keepRunning = false;
         }
-
-        if (Input.isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
-            System.out.println("X: " + Input.getMouseX() + ", Y: " + Input.getMouseY());
-        }
     }
 
     private void sync() {
