@@ -17,5 +17,5 @@
 | 29.11. | 4    | Testejä ja muuta säätöä |
 | 3.11.  | 2    | Uusien ominaisuuksien kokeiluja |
 | 4.11.  | 4    | Grafiikan muuttaminen 3d:ksi | 
-| 5.11.  | 6    | Tekstuurien lisäys, dokumentaation parantelua sekä cameran lisäys | 
+| 5.11.  | 6    | Tekstuurien lisäys, dokumentaation parantelua sekä kameran lisäys | 
 | Yhteensä | 52    | 
