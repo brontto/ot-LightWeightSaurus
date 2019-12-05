@@ -155,9 +155,9 @@ public class DummyGame implements IGameLogic {
         for (GameItem gameItem : gameItems) {
             // Update position
             org.joml.Vector3f itemPos = gameItem.getPosition();
-            float posX = itemPos.x + displxInc * 0.01f;
-            float posY = itemPos.y + displyInc * 0.01f;
-            float posZ = itemPos.z + displzInc * 0.01f;
+            float posX = itemPos.x + displxInc * 0.05f;
+            float posY = itemPos.y + displyInc * 0.05f;
+            float posZ = itemPos.z + displzInc * 0.05f;
             gameItem.setPosition(posX, posY, posZ);
 
             // Update scale
