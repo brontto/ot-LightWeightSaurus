@@ -3,6 +3,7 @@ package game;
 import engine.IGameLogic;
 import engine.Input;
 import engine.Window;
+import graphics.Camera;
 import graphics.Mesh;
 import graphics.Renderer;
 import graphics.Texture;
@@ -10,16 +11,25 @@ import org.joml.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class DummyGame implements IGameLogic {
+public class RollingCubeDemo implements IGameLogic {
+
+    private static final float MOUSE_SENSITIVITY = 0.2f;
+
+    private final Vector3f cameraInc;
 
     private final Renderer renderer;
 
-    private Mesh mesh;
+    private final Camera camera;
 
     private GameItem[] gameItems;
 
-    public DummyGame() {
-        this.renderer = new Renderer();
+    private static final float CAMERA_POS_STEP = 0.05f;
+
+
+    public RollingCubeDemo() {
+        renderer = new Renderer();
+        camera = new Camera();
+        cameraInc = new Vector3f(0, 0, 0);
     }
 
     @Override
@@ -122,7 +132,7 @@ public class DummyGame implements IGameLogic {
         };
 
         Texture texture = new Texture("/textures/grassblock.png");
-        mesh = new Mesh(vertices, textCoords, indices, texture);
+        Mesh mesh = new Mesh(vertices, textCoords, indices, texture);
         GameItem gameItem = new GameItem(mesh);
         gameItem.setPosition(0, 0, -2);
         gameItems = new GameItem[] { gameItem };
@@ -179,7 +189,7 @@ public class DummyGame implements IGameLogic {
 
     @Override
     public void render(Window window) {
-        renderer.render(window, gameItems);
+        renderer.render(window, camera, gameItems);
     }
 
     @Override

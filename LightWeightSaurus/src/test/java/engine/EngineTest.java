@@ -1,9 +1,8 @@
 package engine;
 
-import game.DummyGame;
+import game.RollingCubeDemo;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +12,7 @@ public class EngineTest {
     IGameLogic gameLogic;
     @Before
     public void setUp() throws Exception {
-        gameLogic = new DummyGame();
+        gameLogic = new RollingCubeDemo();
         engine = new Engine("TEST", true, gameLogic);
     }
 
@@ -27,7 +26,7 @@ public class EngineTest {
         engine.init();
         assertNotEquals(0, engine.window.getWindowHandle());
         assertNotEquals(0, Time.getLastLoopTime());
-        assertTrue(Input.isInited());
+        assertTrue(Input.isInitialized());
     }
 
     @Test

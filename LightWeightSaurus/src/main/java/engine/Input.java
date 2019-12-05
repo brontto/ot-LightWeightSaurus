@@ -106,7 +106,7 @@ public class Input {
         return buttons[key];
     }
 
-    public static boolean isInited() {
+    public static boolean isInitialized() {
         return inited;
     }
 }
