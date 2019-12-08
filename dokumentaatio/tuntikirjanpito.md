@@ -15,7 +15,8 @@
 | 27.11. | 4 	| Rendauksen opiskelua ja arkkitehtuurin uudelleen suunnittelua |
 | 28.11. | 6    | Koodin parantelua ja pari uutta luokkaa |
 | 29.11. | 4    | Testejä ja muuta säätöä |
-| 3.11.  | 2    | Uusien ominaisuuksien kokeiluja |
-| 4.11.  | 4    | Grafiikan muuttaminen 3d:ksi | 
-| 5.11.  | 6    | Tekstuurien lisäys, dokumentaation parantelua sekä kameran lisäys | 
-| Yhteensä | 52    | 
+| 3.12.  | 2    | Uusien ominaisuuksien kokeiluja |
+| 4.12.  | 4    | Grafiikan muuttaminen 3d:ksi | 
+| 5.12.  | 6    | Tekstuurien lisäys, dokumentaation parantelua sekä kameran lisäys | 
+| 8.12.  | 6    | Testejä ja muuta säätöä |
+| Yhteensä | 58    | 

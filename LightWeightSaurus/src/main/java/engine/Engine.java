@@ -20,7 +20,9 @@ public class Engine implements Runnable {
 
     private boolean keepRunning;
 
-    public Engine(String windowTitle, boolean vSync, IGameLogic gameLogic) throws Exception {
+
+
+    public Engine(String windowTitle, boolean vSync, IGameLogic gameLogic) {
         window = new Window(windowTitle, WIDTH, HEIGHT, vSync);
         this.gameLogic = gameLogic;
     }
