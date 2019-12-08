@@ -54,7 +54,7 @@ public class Window {
         if (windowHandle == 0) {
             throw new RuntimeException("Failed to create GLFW window");
         }
-        
+
 
         createCallbacks();
 
@@ -116,7 +116,7 @@ public class Window {
         glClearColor(r, g, b, 1.0f);
     }
 
-    public void setClearColor(float r, float g, float b, float alpha){
+    public void setClearColor(float r, float g, float b, float alpha) {
         background.set(r, g, b, alpha);
         glClearColor(r, g, b, alpha);
     }

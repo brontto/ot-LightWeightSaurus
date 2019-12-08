@@ -18,7 +18,7 @@ public class Texture {
         this(loadTexture(fileName));
     }
 
-    public Texture(int id){
+    public Texture(int id) {
         this.id = id;
     }
 
@@ -53,7 +53,7 @@ public class Texture {
         return textureId;
     }
 
-    public void destroy(){
+    public void destroy() {
         glDeleteTextures(id);
     }
 }

@@ -75,21 +75,21 @@ public class ShaderProgram {
 
     public void createUniform(String uniformName) throws Exception {
         int uniformLocation = glGetUniformLocation(programID, uniformName);
-        if(uniformLocation < 0){
+        if (uniformLocation < 0) {
             throw new Exception("Could not find uniform: " + uniformName);
         }
         uniforms.put(uniformName, uniformLocation);
     }
 
-    public void setUniform(String uniformName, Matrix4f value){
-        try(MemoryStack stack = MemoryStack.stackPush()) {
+    public void setUniform(String uniformName, Matrix4f value) {
+        try (MemoryStack stack = MemoryStack.stackPush()) {
             FloatBuffer buffer = stack.mallocFloat(16);
             value.get(buffer);
             glUniformMatrix4fv(uniforms.get(uniformName), false, buffer);
         }
     }
 
-    public void setUniform(String uniformName, int value){
+    public void setUniform(String uniformName, int value) {
         glUniform1i(uniforms.get(uniformName), value);
     }
 

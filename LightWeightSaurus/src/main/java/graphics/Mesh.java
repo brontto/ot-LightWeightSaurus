@@ -74,7 +74,7 @@ public class Mesh {
         }
     }
 
-    public void render(){
+    public void render() {
         glActiveTexture(GL_TEXTURE0);
 
         glBindTexture(GL_TEXTURE_2D, texture.getId());

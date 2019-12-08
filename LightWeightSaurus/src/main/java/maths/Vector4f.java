@@ -19,14 +19,14 @@ public class Vector4f {
         this.w = 1.0f;
     }
 
-    public void set(float x, float y, float z){
+    public void set(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.w = 1.0f;
     }
 
-    public void set(float x, float y, float z, float w){
+    public void set(float x, float y, float z, float w) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -67,13 +67,17 @@ public class Vector4f {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Vector4f vector4f = (Vector4f) o;
         return Float.compare(vector4f.x, x) == 0 &&
-                Float.compare(vector4f.y, y) == 0 &&
-                Float.compare(vector4f.z, z) == 0 &&
-                Float.compare(vector4f.w, w) == 0;
+            Float.compare(vector4f.y, y) == 0 &&
+            Float.compare(vector4f.z, z) == 0 &&
+            Float.compare(vector4f.w, w) == 0;
     }
 
     @Override
@@ -84,10 +88,10 @@ public class Vector4f {
     @Override
     public String toString() {
         return "Vector4f{" +
-                "x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                ", w=" + w +
-                '}';
+            "x=" + x +
+            ", y=" + y +
+            ", z=" + z +
+            ", w=" + w +
+            '}';
     }
 }
