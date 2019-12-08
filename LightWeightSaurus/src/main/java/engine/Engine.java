@@ -47,8 +47,6 @@ public class Engine implements Runnable {
         } finally {
             destroy();
         }
-
-
     }
 
     private void loop() {
