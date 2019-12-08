@@ -1,7 +1,7 @@
 package graphics;
 
 import engine.Window;
-import game.GameItem;
+import engine.GameItem;
 import org.joml.Matrix4f;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -36,7 +36,7 @@ public class Renderer {
         shaderProgram.createUniform("modelViewMatrix");
         shaderProgram.createUniform("texture_sampler");
 
-        window.setClearColor(0, 0, 0, 0);
+        window.setClearColor(0, 0, 0);
     }
 
     public void render(Window window, Camera camera, GameItem[] gameItems) {

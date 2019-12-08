@@ -31,7 +31,7 @@
                 <configuration>
                     <excludes>
                         <exclude>main/*</exclude>
-
+                        <exclude>game/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

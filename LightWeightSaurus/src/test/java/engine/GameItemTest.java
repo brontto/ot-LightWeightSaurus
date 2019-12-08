@@ -1,20 +1,23 @@
-package graphics;
+package engine;
 
-import engine.Window;
+import graphics.Mesh;
+import graphics.Texture;
 import org.joml.Vector3f;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-public class MeshTest {
+public class GameItemTest {
+
+    GameItem gameItem;
 
     Mesh mesh;
-    Window window;
 
     @Before
     public void setUp() throws Exception {
-        window = new Window("TEST", 100, 100, false);
+        Window window = new Window("TEST", 100, 100, false);
         window.init(false);
         float[] vertices = new float[]{
             // V0
@@ -113,19 +116,44 @@ public class MeshTest {
         };
         Texture texture = new Texture("/textures/grassblock.png");
         mesh = new Mesh(vertices, textCoords, indices, texture);
-    }
-
-
-    @Test
-    public void constructor() {
-        assertNotEquals(0, mesh.getTcVboId());
-        assertNotEquals(0, mesh.getIdxVboId());
-        assertNotEquals(0, mesh.getPosVboId());
-        assertNotEquals(0, mesh.getVaoId());
-        assertNotEquals(0, mesh.getVertexCount());
+        gameItem = new GameItem(mesh);
     }
 
     @Test
-    public void destroy() {
+    public void setPosition() {
+        gameItem.setPosition(1, 2, 3);
+        assertEquals(new Vector3f(1, 2, 3), gameItem.getPosition());
+    }
+
+    @Test
+    public void getPosition() {
+        assertEquals(new Vector3f(0, 0, 0), gameItem.getPosition());
+    }
+
+    @Test
+    public void setScale() {
+        gameItem.setScale(2);
+        assertEquals(2, gameItem.getScale(), 0.01);
+    }
+
+    @Test
+    public void getScale() {
+        assertEquals(1, gameItem.getScale(), 0.01);
+    }
+
+    @Test
+    public void getRotation() {
+        assertEquals(new Vector3f(0, 0, 0), gameItem.getRotation());
+    }
+
+    @Test
+    public void setRotation() {
+        gameItem.setRotation(1, 5, 10);
+        assertEquals(new Vector3f(1, 5, 10), gameItem.getRotation());
+    }
+
+    @Test
+    public void getMesh() {
+        assertEquals(mesh, gameItem.getMesh());
     }
 }

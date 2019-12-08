@@ -16,6 +16,7 @@ public class Engine implements Runnable {
 
     private IGameLogic gameLogic;
 
+    private boolean inited;
 
     private boolean keepRunning;
 
@@ -25,11 +26,16 @@ public class Engine implements Runnable {
     }
 
 
+    public boolean isInited() {
+        return inited;
+    }
+
     public void init() throws Exception {
-        window.init();
+        window.init(true);
         Input.init(window.getWindowHandle());
         Time.init();
         gameLogic.init(window);
+        inited = true;
     }
 
     public void run() {
@@ -52,6 +58,7 @@ public class Engine implements Runnable {
         float interval = 1f / TARGET_UPS;
 
         keepRunning = true;
+
         while (keepRunning) {
             elapsedTime = Time.getElapsedTime();
             accumulator += elapsedTime;
@@ -105,5 +112,13 @@ public class Engine implements Runnable {
 
     public IGameLogic getGameLogic() {
         return gameLogic;
+    }
+
+    public void shutDown(){
+        keepRunning = false;
+    }
+
+    public boolean isKeepRunning() {
+        return keepRunning;
     }
 }

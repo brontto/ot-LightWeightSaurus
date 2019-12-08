@@ -10,6 +10,7 @@ public class EngineTest {
 
     Engine engine;
     IGameLogic gameLogic;
+
     @Before
     public void setUp() throws Exception {
         gameLogic = new RollingCubeDemo();
@@ -17,10 +18,11 @@ public class EngineTest {
     }
 
     @Test
-    public void constructor(){
+    public void constructor() {
         assertNotNull(engine.window);
         assertNotNull(engine.getGameLogic());
     }
+
     @Test
     public void init() throws Exception {
         engine.init();
@@ -29,7 +31,4 @@ public class EngineTest {
         assertTrue(Input.isInitialized());
     }
 
-    @Test
-    public void run() {
-    }
 }

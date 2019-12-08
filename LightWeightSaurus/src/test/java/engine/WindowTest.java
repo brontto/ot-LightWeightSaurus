@@ -10,7 +10,7 @@ public class WindowTest {
     Window window;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         window = new Window("TEST", 100, 100, true);
     }
 
@@ -20,18 +20,18 @@ public class WindowTest {
     }
 
     @Test
-    public void getHeight(){
+    public void getHeight() {
         assertEquals(100, window.getHeight());
     }
 
     @Test
-    public void getWidth(){
+    public void getWidth() {
         assertEquals(100, window.getWidth());
     }
 
     @Test
     public void init() {
-        window.init();
+        window.init(false);
         assertFalse(window.getWindowHandle() == 0);
     }
 }

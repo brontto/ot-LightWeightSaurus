@@ -1,5 +1,6 @@
 package game;
 
+import engine.GameItem;
 import engine.IGameLogic;
 import engine.Input;
 import engine.Window;

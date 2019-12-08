@@ -1,6 +1,5 @@
 package engine;
 
-import maths.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -12,7 +11,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
-    private Vector4f background;
+    private float backgroundX, backgroundY, backgroundZ;
     private int width, height;
     private String title;
     private long windowHandle;
@@ -28,10 +27,9 @@ public class Window {
         this.title = title;
         this.isResized = false;
         this.vSync = vSync;
-        background = new Vector4f(1.0f, 0.5f, 0.5f);
     }
 
-    public void init() {
+    public void init(boolean showWindow) {
         //error callback.
         GLFWErrorCallback.createPrint(System.err).set();
 
@@ -71,10 +69,12 @@ public class Window {
             glfwSwapInterval(1);
         }
 
-        GLFW.glfwShowWindow(windowHandle);
+        if(showWindow){
+            GLFW.glfwShowWindow(windowHandle);
+        }
 
         GL.createCapabilities();
-        glClearColor(background.getX(), background.getY(), background.getZ(), 1.0f);
+        glClearColor(backgroundX, backgroundY, backgroundZ, 1.0f);
         glEnable(GL_DEPTH_TEST);
     }
 
@@ -112,13 +112,10 @@ public class Window {
     }
 
     public void setClearColor(float r, float g, float b) {
-        background.set(r, g, b);
+        backgroundX = r;
+        backgroundY = g;
+        backgroundZ = b;
         glClearColor(r, g, b, 1.0f);
-    }
-
-    public void setClearColor(float r, float g, float b, float alpha) {
-        background.set(r, g, b, alpha);
-        glClearColor(r, g, b, alpha);
     }
 
     public boolean isFullScreen() {

@@ -64,6 +64,7 @@ public class Input {
         mouseMove.free();
         mouseButtons.free();
         mouseScroll.free();
+
     }
 
     public static double getMouseY() {
