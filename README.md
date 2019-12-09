@@ -13,6 +13,13 @@ Ohjelman tarkoitus on mahdollistaa 3d-grafiikan piirtämisen tietokoneen ruudull
 
 [Käyttöohje](https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/kayttoohje.md)
 
+## Releaset
+
+[Viikko 5](https://github.com/brontto/ot-LightWeightSaurus/releases/tag/viikko5)
+
+[Viikko 6](https://github.com/brontto/ot-LightWeightSaurus/releases/tag/0.2)
+
+
 ## Komentorivitoiminnot
 
 ### Suoritus 
