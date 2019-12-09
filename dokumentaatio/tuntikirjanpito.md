@@ -19,4 +19,5 @@
 | 4.12.  | 4    | Grafiikan muuttaminen 3d:ksi | 
 | 5.12.  | 6    | Tekstuurien lisäys, dokumentaation parantelua sekä kameran lisäys | 
 | 8.12.  | 6    | Testejä ja muuta säätöä |
-| Yhteensä | 58    | 
+| 9.12.  | 2    | Javadoc |
+| Yhteensä | 60    | 
