@@ -19,7 +19,11 @@ public class Input {
 
     private static boolean inited;
 
-    public static void init(Long window) {
+    /**
+     * Alustaa inputit oikeaan ikkunaan.
+     * @param windowsHandle ikkunan tunniste.
+     */
+    public static void init(Long windowsHandle) {
 
         keyboard = new GLFWKeyCallback() {
             @Override
@@ -51,14 +55,17 @@ public class Input {
             }
         };
 
-        org.lwjgl.glfw.GLFW.glfwSetKeyCallback(window, keyboard);
-        GLFW.glfwSetCursorPosCallback(window, mouseMove);
-        GLFW.glfwSetMouseButtonCallback(window, mouseButtons);
-        GLFW.glfwSetScrollCallback(window, mouseScroll);
+        org.lwjgl.glfw.GLFW.glfwSetKeyCallback(windowsHandle, keyboard);
+        GLFW.glfwSetCursorPosCallback(windowsHandle, mouseMove);
+        GLFW.glfwSetMouseButtonCallback(windowsHandle, mouseButtons);
+        GLFW.glfwSetScrollCallback(windowsHandle, mouseScroll);
 
         inited = true;
     }
 
+    /**
+     * Vapauttaa resurssit moottirn lopetettua.
+     */
     public static void destroy() {
         keyboard.free();
         mouseMove.free();
@@ -99,10 +106,20 @@ public class Input {
         return mouseScroll;
     }
 
+    /**
+     * Palauttaa halutun näppäin inputin tilan.
+     * @param key Haluttu näppäin.
+     * @return Tila. Onko painettu vai ei.
+     */
     public static boolean isKeyDown(int key) {
         return keys[key];
     }
 
+    /**
+     * Palauttaa halutun hiiren painikkeen inputin tilan.
+     * @param key Haluttu painike.
+     * @return Tila. Onko painettu vai ei.
+     */
     public static boolean isButtonDown(int key) {
         return buttons[key];
     }

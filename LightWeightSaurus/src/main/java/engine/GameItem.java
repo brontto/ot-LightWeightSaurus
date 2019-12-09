@@ -13,6 +13,11 @@ public class GameItem {
 
     private final Vector3f rotation;
 
+
+    /**
+     * Konstruktori joka luo pelin sisäisen objektin.
+     * @param mesh sisältää tarvittavan tiedon grafiikasta.
+     */
     public GameItem(Mesh mesh) {
         this.mesh = mesh;
         position = new Vector3f(0, 0, 0);
@@ -20,6 +25,13 @@ public class GameItem {
         rotation = new Vector3f(0, 0, 0);
     }
 
+
+    /**
+     * Asettaa GameItemin lokaation 3D tilassa.
+     * @param x x-akseli
+     * @param y y-akseli
+     * @param z z-akseli
+     */
     public void setPosition(float x, float y, float z) {
         this.position.x = x;
         this.position.y = y;
@@ -42,6 +54,12 @@ public class GameItem {
         return rotation;
     }
 
+    /**
+     * Asettaa GameItemin rotaation 3D tilassa.
+     * @param x x-akseli
+     * @param y y-akseli
+     * @param z z-akseli
+     */
     public void setRotation(float x, float y, float z) {
         this.rotation.x = x;
         this.rotation.y = y;

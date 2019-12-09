@@ -21,6 +21,13 @@ public class Window {
 
     private boolean vSync;
 
+    /**
+     * Luo Window olion.
+     * @param title Titteli joka tulee näkyviin ikkunan ylälaitaan
+     * @param width Ikkunan leveys.
+     * @param height Ikkunan korkeus.
+     * @param vSync Vsync päällä vai ei.
+     */
     public Window(String title, int width, int height, boolean vSync) {
         this.width = width;
         this.height = height;
@@ -29,6 +36,11 @@ public class Window {
         this.vSync = vSync;
     }
 
+    /**
+     * Alustaa ikkunan.
+     * @param showWindow Näyttääkö ikkunan vai ei. Testejä varten voidaan haluta että ei.
+     *                   Mutta suorituksen aikana tämä pitää olla true.
+     */
     public void init(boolean showWindow) {
         //error callback.
         GLFWErrorCallback.createPrint(System.err).set();
@@ -59,8 +71,8 @@ public class Window {
         GLFWVidMode videoMode = glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
 
         glfwSetWindowPos(windowHandle,
-                (videoMode.width() - width) / 2,
-                (videoMode.height() - height) / 2
+            (videoMode.width() - width) / 2,
+            (videoMode.height() - height) / 2
         );
 
         glfwMakeContextCurrent(windowHandle);
@@ -69,7 +81,7 @@ public class Window {
             glfwSwapInterval(1);
         }
 
-        if(showWindow){
+        if (showWindow) {
             GLFW.glfwShowWindow(windowHandle);
         }
 
@@ -78,6 +90,9 @@ public class Window {
         glEnable(GL_DEPTH_TEST);
     }
 
+    /**
+     *  Luo ikkunan koon muokkaamisen mahdollistavan komennon.
+     */
     private void createCallbacks() {
         sizeCallback = new GLFWWindowSizeCallback() {
             @Override
@@ -90,6 +105,9 @@ public class Window {
         GLFW.glfwSetWindowSizeCallback(windowHandle, sizeCallback);
     }
 
+    /**
+     * Päivittää ikkunan.
+     */
     public void update() {
         if (isResized) {
             GL11.glViewport(0, 0, width, height);
@@ -100,17 +118,21 @@ public class Window {
         GLFW.glfwPollEvents();
     }
 
-
-    public boolean shouldClose() {
-        return GLFW.glfwWindowShouldClose(windowHandle);
-    }
-
+    /**
+     * Vapauttaa ikkunan resurssit.
+     */
     public void destroy() {
         sizeCallback.free();
         GLFW.glfwWindowShouldClose(windowHandle);
         GLFW.glfwDestroyWindow(windowHandle);
     }
 
+    /**
+     * Asettaa taustan värin.
+     * @param r Puna.
+     * @param g Vihreä.
+     * @param b Sininen.
+     */
     public void setClearColor(float r, float g, float b) {
         backgroundX = r;
         backgroundY = g;
@@ -122,6 +144,10 @@ public class Window {
         return isFullscreen;
     }
 
+    /**
+     * Kertoo pitäiskö ikkuna sulkea.
+     * @return boolean joka ilmoittaa suljetaanko ikkuna.
+     */
     public boolean close() {
         return GLFW.glfwWindowShouldClose(windowHandle);
     }
@@ -142,6 +168,10 @@ public class Window {
         return windowHandle;
     }
 
+    /**
+     * Onko Vsync päällä.
+     * @return Onko päällä vai ei.
+     */
     public boolean isvSync() {
         return vSync;
     }

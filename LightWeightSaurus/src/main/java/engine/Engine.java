@@ -4,6 +4,9 @@ import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
 
+/**
+ * Moottori sisältää kaikki muut osat ja huolehtii niiden pyörittämisestä.
+ */
 public class Engine implements Runnable {
 
     public static final int TARGET_FPS = 75;
@@ -20,18 +23,23 @@ public class Engine implements Runnable {
 
     private boolean keepRunning;
 
-
-
+    /**
+     * Konsturktori jolla luodaan moottori.
+     *
+     * @param windowTitle Titteli joka näkyy ikkunan yläreunassa.
+     * @param vSync Laitetaanko Vsync päälle.
+     * @param gameLogic Varsinainen pelin apstraktio.
+     */
     public Engine(String windowTitle, boolean vSync, IGameLogic gameLogic) {
         window = new Window(windowTitle, WIDTH, HEIGHT, vSync);
         this.gameLogic = gameLogic;
     }
 
 
-    public boolean isInited() {
-        return inited;
-    }
 
+    /**
+     * Alustaa moottorin toiminnan.
+     */
     public void init() throws Exception {
         window.init(true);
         Input.init(window.getWindowHandle());
@@ -40,6 +48,9 @@ public class Engine implements Runnable {
         inited = true;
     }
 
+    /**
+     * Käynnistää moottorin toiminnan.
+     */
     public void run() {
         try {
             init();
@@ -51,6 +62,10 @@ public class Engine implements Runnable {
         }
     }
 
+
+    /**
+     * Sisältää varsinaisen moottorin looppin jonka sisältä kutsutaan kaikkea muuta.
+     */
     private void loop() {
 
         float elapsedTime;
@@ -77,6 +92,11 @@ public class Engine implements Runnable {
     }
 
 
+    /**
+     * Moottorin update metodi jossa tarkistetaan suljetaanko ikkuna ja
+     * päivitetään pelilogiikka.
+     * @param interval aika päivitysten välillä
+     */
     private void update(float interval) {
 
         gameLogic.update(interval);
@@ -86,6 +106,11 @@ public class Engine implements Runnable {
         }
     }
 
+
+    /**
+     * Metodi jolla odotetaan update loopin lopussa jotta saadaan
+     * frama rate pidettyä oikeassa rytmissä
+     */
     private void sync() {
         float loopSlot = 1f / TARGET_FPS;
         double endTime = Time.getLastLoopTime() + loopSlot;
@@ -98,11 +123,18 @@ public class Engine implements Runnable {
     }
 
 
+    /**
+     * Kutsuu ruudulle piirtäviä osia.
+     */
     private void render() {
         gameLogic.render(window);
         window.update();
     }
 
+
+    /**
+     * Vapauttaa resurssit moottorin lopetettua toimintansa.
+     */
     private void destroy() {
         Input.destroy();
         window.destroy();
@@ -114,11 +146,8 @@ public class Engine implements Runnable {
         return gameLogic;
     }
 
-    public void shutDown(){
-        keepRunning = false;
+    public boolean isInited() {
+        return inited;
     }
 
-    public boolean isKeepRunning() {
-        return keepRunning;
-    }
 }
