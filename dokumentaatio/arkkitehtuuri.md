@@ -14,6 +14,11 @@ Engine luokan tehtävä on käynnistää ja ylläpitää ns. renderlooppia sekä
 
 <img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/alustavatluokat.png?raw=true" width="400">
 
-Seuraava kaavio kuvaa käynnistyksen ja suorituksen aikaista toimintaa. 
+### Päätoiminnallisuus
+
+Suoritus lähtee siitä että luodaan IGameLogic rajapinnan toteuttava olio ja annetaan se Enginen luonnin yhteydessä sille. 
+Enginen sisällä taas alustetaan kaikki tarvittavat isot komponentit kuten ikkuna ja inputit ja näiden jälkeen kaikki itse IGameLogicin sisältämä kama eli mm. meshit ja renderer.  
+
+Seuraava kaavio kuvaa käynnistyksen toimintaa. 
 
 <img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/suorituskaavio.png?raw=true" width="400">
