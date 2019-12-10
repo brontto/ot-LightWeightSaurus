@@ -8,7 +8,7 @@ Sovelluslogiikkaa on testattu automaattisesti mahdollisimman laajasti.
 
 Tästä on kuitenkin irrotettu paketit game ja main koska game vastaa osaltaan käytännössä käyttöliittymän luontia. 
 
-//tähän kuva
+<img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/testikattavuus.pngraw=true" width="500">
 
 ### Testauksen ongelmakohtia
 
