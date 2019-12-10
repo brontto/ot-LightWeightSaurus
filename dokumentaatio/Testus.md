@@ -23,4 +23,5 @@ ole kovin mielekästä koska se on jo testattu. Myöskin poikkeuksien heitto koh
 löytänyt keinoa näiden testaamiseen ilman että olisin rikkonu koodini totaalisesti. 
 
 Samoin update loopin aikainen toiminta tuntui olevan erittäin vaikeaa testata keskeisistä komponenteista kuten luokista engine ja window.
+
   
