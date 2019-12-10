@@ -61,7 +61,7 @@ generoi hakemistoon _target_ suoritettavan jar-tiedoston _LightWeightSaurus-1.0-
 Tiedostoon [checkstyle.xml](https://github.com/brontto/ot-LightWeightSaurus/blob/master/LightWeightSaurus/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
 
 ```
- mvn jxr:jxr checkstyle:checkstyle
+mvn jxr:jxr checkstyle:checkstyle
 ```
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
