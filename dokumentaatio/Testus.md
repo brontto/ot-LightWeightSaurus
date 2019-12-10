@@ -10,6 +10,12 @@ Tästä on kuitenkin irrotettu paketit game ja main koska game vastaa osaltaan k
 
 <img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/testikattavuus.png" width="800">
 
+### Järjestelmätestaus
+
+Sovelluksen järjestelmätestaus on suoritettu manuaalisesti ja se on testattu sekä windows että linux ympäristössä. 
+Siitä on testattu kaikki käyttöohjeen mukaiset ominaisuudet.
+
+
 ### Testauksen ongelmakohtia
 
 Testeissä ongelmana on monessa kohtaa se että käytössä on todella laajalti LWJGL-kirjasto, jonka testaaminen ei 
