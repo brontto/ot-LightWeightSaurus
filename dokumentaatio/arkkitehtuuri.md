@@ -21,4 +21,4 @@ Enginen sisällä taas alustetaan kaikki tarvittavat isot komponentit kuten ikku
 
 Seuraava kaavio kuvaa käynnistyksen toimintaa. 
 
-<img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/suorituskaavio.png?raw=true" width="400">
+<img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/kaynnistyskaavio.png?raw=true" width="400">
