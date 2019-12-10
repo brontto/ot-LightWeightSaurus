@@ -23,8 +23,12 @@ Enginen sisällä taas alustetaan kaikki tarvittavat isot komponentit kuten ikku
 
 Seuraava kaavio kuvaa käynnistyksen toimintaa. 
 
-<img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/kaynnistyskaavio.png?raw=true" width="400">
+<img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/kaynnistyskaavio.png?raw=true" width="500">
 
 #### Suoritus
+
+Suorituksen aikana moottori päivittää eri komponentteja peräkkäin tietyssä järjestyksessä. Ensimmäisenä päiviteään pelilogiikka jonka sisällä otetaan vastaan käyttäjältä tuleva input ja muokataan pelin sisältöä sen mukaan. Tämän jälkeen tehdään uusi kuva muutosten pohjalta ja lopuksi annetaan se ikkunan näytettäväksi. Tätä looppia jatketaan kunnes moottori sammutetaan. 
+
+<img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/suorituskaavio.png?raw=true" width="500">
 
 
