@@ -7,7 +7,7 @@ import static org.lwjgl.glfw.GLFW.*;
 /**
  * Moottori sisältää kaikki muut osat ja huolehtii niiden pyörittämisestä.
  */
-public class Engine implements Runnable {
+public class Engine {
 
     public static final int TARGET_FPS = 75;
 
@@ -50,21 +50,10 @@ public class Engine implements Runnable {
 
     /**
      * Käynnistää moottorin toiminnan.
-     */
-    public void run() {
-        try {
-            init();
-            loop();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            destroy();
-        }
-    }
-
-    /**
-     * Vaihtoehtoinen run metodi jos moottori halutaan sammuttaa tietyn ajan kuluttua.
+     * Parametrina voidaan antaa sekunteja indikoiva numero
+     * jos moottori halutaan sammuttaa tietyn ajan kuluttua.
      * @param seconds Kuinka kauvan moottori on käynnissä.
+     *                Jos paramateri on nolla moottori ei sammu itsekseen.
      */
     public void run(int seconds) {
         try {
@@ -79,36 +68,9 @@ public class Engine implements Runnable {
 
 
     /**
-     * Sisältää varsinaisen moottorin looppin jonka sisältä kutsutaan kaikkea muuta.
-     */
-    private void loop() {
-
-        float elapsedTime;
-        float accumulator = 0f;
-        float interval = 1f / TARGET_UPS;
-
-        keepRunning = true;
-
-        while (keepRunning) {
-            elapsedTime = Time.getDeltaTime();
-            accumulator += elapsedTime;
-
-            while (accumulator >= interval) {
-                update(interval);
-                accumulator -= interval;
-            }
-
-            render();
-
-            if (!window.isvSync()) {
-                sync();
-            }
-        }
-    }
-
-    /**
-     * Vaihtoehtoinen loop metodi jos moottori halutaan sammuttaa tietyn ajan kuluttua.
-     * @param seconds Kuinka kauvan moottori on käynnissä.
+     * Tämän metodin sisällä päivtetään muita moottorin osia.
+     * Jos moottori halutaan sammuttaa tietyn ajan kuluttua voidaan antaa sekunteina toimiva parametri.
+     * @param seconds Kuinka kauvan moottori on käynnissä. Jos nolla niin moottoria ei sammuteta tämän toimesta
      */
     private void loop(int seconds) {
 
@@ -122,8 +84,8 @@ public class Engine implements Runnable {
             elapsedTime = Time.getDeltaTime();
             accumulator += elapsedTime;
 
-            if(Time.getElapsedTime() > seconds) {
-                break;
+            if(Time.getElapsedTime() > seconds && seconds != 0) {
+                keepRunning = false;
             }
 
             while (accumulator >= interval) {

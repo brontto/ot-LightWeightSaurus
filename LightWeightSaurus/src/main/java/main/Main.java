@@ -13,7 +13,7 @@ public class Main {
             boolean vSync = true;
             IGameLogic gameLogic = new RollingCubeDemo();
             Engine engine = new Engine("GAME", vSync, gameLogic);
-            engine.run();
+            engine.run(0);
         } catch (Exception excp) {
             excp.printStackTrace();
             System.exit(-1);

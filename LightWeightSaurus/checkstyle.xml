@@ -7,7 +7,7 @@
     <property name="localeLanguage" value="en"/>
 
     <module name='TreeWalker'>
-        
+
         <module name="JavadocStyle">
             <property name="scope" value="public"/>
             <property name="checkEmptyJavadoc" value="true"/>
