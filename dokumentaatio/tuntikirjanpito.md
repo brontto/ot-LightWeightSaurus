@@ -20,4 +20,5 @@
 | 5.12.  | 6    | Tekstuurien lisäys, dokumentaation parantelua sekä kameran lisäys | 
 | 8.12.  | 6    | Testejä ja muuta säätöä |
 | 9.12.  | 2    | Javadoc |
-| Yhteensä | 60    | 
+| 10.12. | 3    | Dokumentaatio ja korjauksia | 
+| Yhteensä | 63    | 
