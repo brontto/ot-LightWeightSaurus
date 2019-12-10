@@ -21,4 +21,6 @@ Siitä on testattu kaikki käyttöohjeen mukaiset ominaisuudet.
 Testeissä ongelmana on monessa kohtaa se että käytössä on todella laajalti LWJGL-kirjasto, jonka testaaminen ei 
 ole kovin mielekästä koska se on jo testattu. Myöskin poikkeuksien heitto kohdat eivät sisälly testeihin koska en
 löytänyt keinoa näiden testaamiseen ilman että olisin rikkonu koodini totaalisesti. 
+
+Samoin update loopin aikainen toiminta tuntui olevan erittäin vaikeaa testata keskeisistä komponenteista kuten luokista engine ja window.
   
