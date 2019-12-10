@@ -1,6 +1,12 @@
 # Arkkitehtuurikuvaus
 
+## Pakkausrakenne
+
+Koodi on jaettu useampaan pakkaukseen. Keskeiset näistä ovat engine ja graphics. Engine sisältää moottorin keskeisen toimintalogiikan. Graphics taas sisältää kaikki grafiikan piirtämiseen tarvittavat komponentit.
+Game pakkauksesta löytyy kaikki pelkästään yhteen "peliin" liittyvät asiat.
+
 ## Sovelluslogiikka
+
 Sovelluslogiikan keskeiset osat ovat [Engine](https://github.com/brontto/ot-LightWeightSaurus/blob/master/LightWeightSaurus/src/main/java/engine/Engine.java), 
 [Input](https://github.com/brontto/ot-LightWeightSaurus/blob/master/LightWeightSaurus/src/main/java/engine/Input.java) ja [Window](https://github.com/brontto/ot-LightWeightSaurus/blob/master/LightWeightSaurus/src/main/java/engine/Window.java) luokat. 
 
