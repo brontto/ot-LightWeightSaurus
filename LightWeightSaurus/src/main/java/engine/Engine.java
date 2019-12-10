@@ -62,6 +62,21 @@ public class Engine implements Runnable {
         }
     }
 
+    /**
+     * Vaihtoehtoinen run metodi jos moottori halutaan sammuttaa tietyn ajan kuluttua.
+     * @param seconds Kuinka kauvan moottori on käynnissä.
+     */
+    public void run(int seconds) {
+        try {
+            init();
+            loop(seconds);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            destroy();
+        }
+    }
+
 
     /**
      * Sisältää varsinaisen moottorin looppin jonka sisältä kutsutaan kaikkea muuta.
@@ -75,8 +90,41 @@ public class Engine implements Runnable {
         keepRunning = true;
 
         while (keepRunning) {
-            elapsedTime = Time.getElapsedTime();
+            elapsedTime = Time.getDeltaTime();
             accumulator += elapsedTime;
+
+            while (accumulator >= interval) {
+                update(interval);
+                accumulator -= interval;
+            }
+
+            render();
+
+            if (!window.isvSync()) {
+                sync();
+            }
+        }
+    }
+
+    /**
+     * Vaihtoehtoinen loop metodi jos moottori halutaan sammuttaa tietyn ajan kuluttua.
+     * @param seconds Kuinka kauvan moottori on käynnissä.
+     */
+    private void loop(int seconds) {
+
+        float elapsedTime;
+        float accumulator = 0f;
+        float interval = 1f / TARGET_UPS;
+
+        keepRunning = true;
+
+        while (keepRunning) {
+            elapsedTime = Time.getDeltaTime();
+            accumulator += elapsedTime;
+
+            if(Time.getElapsedTime() > seconds) {
+                break;
+            }
 
             while (accumulator >= interval) {
                 update(interval);

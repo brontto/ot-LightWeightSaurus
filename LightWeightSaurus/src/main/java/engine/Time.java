@@ -3,12 +3,14 @@ package engine;
 public class Time {
 
     private static double lastLoopTime;
+    private static double firstTime;
 
     /**
      * Alustaa ajan.
      */
     public static void init() {
         lastLoopTime = getTime();
+        firstTime = lastLoopTime;
     }
 
     public static double getTime() {
@@ -16,10 +18,10 @@ public class Time {
     }
 
     /**
-     * Kertoo kuluvan ajan.
-     * @return Kulunut aika moottorin käynnistymisestä.
+     * Kertoo päivityksestä kuluneen ajan.
+     * @return Kulunut aika edellisestä päivityksestä.
      */
-    public static float getElapsedTime() {
+    public static float getDeltaTime() {
         double time = getTime();
         float elapsedTime = (float) (time - lastLoopTime);
         lastLoopTime = time;
@@ -28,5 +30,13 @@ public class Time {
 
     public static double getLastLoopTime() {
         return lastLoopTime;
+    }
+
+    /**
+     * Kertoo käynnistyksestä kuluneen ajan.
+     * @return käynnistyksestä kulunut aika.
+     */
+    public static double getElapsedTime() {
+        return getTime() - firstTime;
     }
 }
