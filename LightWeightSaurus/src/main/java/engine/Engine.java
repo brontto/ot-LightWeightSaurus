@@ -27,14 +27,13 @@ public class Engine {
      * Konsturktori jolla luodaan moottori.
      *
      * @param windowTitle Titteli joka näkyy ikkunan yläreunassa.
-     * @param vSync Laitetaanko Vsync päälle.
-     * @param gameLogic Varsinainen pelin apstraktio.
+     * @param vSync       Laitetaanko Vsync päälle.
+     * @param gameLogic   Varsinainen pelin apstraktio.
      */
     public Engine(String windowTitle, boolean vSync, IGameLogic gameLogic) {
         window = new Window(windowTitle, WIDTH, HEIGHT, vSync);
         this.gameLogic = gameLogic;
     }
-
 
 
     /**
@@ -52,6 +51,7 @@ public class Engine {
      * Käynnistää moottorin toiminnan.
      * Parametrina voidaan antaa sekunteja indikoiva numero
      * jos moottori halutaan sammuttaa tietyn ajan kuluttua.
+     *
      * @param seconds Kuinka kauvan moottori on käynnissä.
      *                Jos paramateri on nolla moottori ei sammu itsekseen.
      */
@@ -70,6 +70,7 @@ public class Engine {
     /**
      * Tämän metodin sisällä päivtetään muita moottorin osia.
      * Jos moottori halutaan sammuttaa tietyn ajan kuluttua voidaan antaa sekunteina toimiva parametri.
+     *
      * @param seconds Kuinka kauvan moottori on käynnissä. Jos nolla niin moottoria ei sammuteta tämän toimesta
      */
     private void loop(int seconds) {
@@ -84,7 +85,7 @@ public class Engine {
             elapsedTime = Time.getDeltaTime();
             accumulator += elapsedTime;
 
-            if(Time.getElapsedTime() > seconds && seconds != 0) {
+            if (Time.getElapsedTime() > seconds && seconds != 0) {
                 keepRunning = false;
             }
 
@@ -105,6 +106,7 @@ public class Engine {
     /**
      * Moottorin update metodi jossa tarkistetaan suljetaanko ikkuna ja
      * päivitetään pelilogiikka.
+     *
      * @param interval aika päivitysten välillä
      */
     private void update(float interval) {
