@@ -5,6 +5,8 @@ import game.RollingCubeDemo;
 import engine.IGameLogic;
 import engine.Engine;
 
+import java.util.Scanner;
+
 public class Main {
 
 
@@ -12,14 +14,43 @@ public class Main {
      * Main metodi joka aloittaa ohjelman suorittamisen.
      */
     public static void main(String[] args) {
-        try {
-            boolean vSync = true;
-            IGameLogic gameLogic = new CameraDemo();
-            Engine engine = new Engine("GAME", vSync, gameLogic);
-            engine.run(0);
-        } catch (Exception excp) {
-            excp.printStackTrace();
-            System.exit(-1);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Engine starts");
+        System.out.println("Witch demo u wanna see?");
+        System.out.println("1. CameraDemo");
+        System.out.println("2. RollingCubeDemo");
+        System.out.println("Write a number: ");
+        System.out.println("0 ends the program");
+        int number = Integer.valueOf(scanner.nextLine());
+
+        while(true){
+            if(number == 0){
+                break;
+            }else if(number == 1){
+                try {
+                    boolean vSync = true;
+                    IGameLogic gameLogic = new CameraDemo();
+                    Engine engine = new Engine("GAME", vSync, gameLogic);
+                    engine.run(0);
+                } catch (Exception excp) {
+                    excp.printStackTrace();
+                    System.exit(-1);
+                }
+            }else if(number == 2){
+                try {
+                    boolean vSync = true;
+                    IGameLogic gameLogic = new RollingCubeDemo();
+                    Engine engine = new Engine("GAME", vSync, gameLogic);
+                    engine.run(0);
+                } catch (Exception excp) {
+                    excp.printStackTrace();
+                    System.exit(-1);
+                }
+            }
+            number = Integer.valueOf(scanner.nextLine());
         }
+
+
     }
 }

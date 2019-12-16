@@ -152,9 +152,9 @@ public class CameraDemo implements IGameLogic {
     public void update(float interval) {
         Vector3f cameraMove = new Vector3f(0, 0, 0);
         if (Input.isKeyDown(GLFW_KEY_W)) {
-            cameraMove.z = -1;
-        } else if (Input.isKeyDown(GLFW_KEY_S)) {
             cameraMove.z = 1;
+        } else if (Input.isKeyDown(GLFW_KEY_S)) {
+            cameraMove.z = -1;
         }
         if (Input.isKeyDown(GLFW_KEY_A)) {
             cameraMove.x = -1;
