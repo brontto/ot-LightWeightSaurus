@@ -8,10 +8,13 @@ import engine.Engine;
 public class Main {
 
 
+    /**
+     * Main metodi joka aloittaa ohjelman suorittamisen.
+     */
     public static void main(String[] args) {
         try {
             boolean vSync = true;
-            IGameLogic gameLogic = new RollingCubeDemo();
+            IGameLogic gameLogic = new CameraDemo();
             Engine engine = new Engine("GAME", vSync, gameLogic);
             engine.run(0);
         } catch (Exception excp) {

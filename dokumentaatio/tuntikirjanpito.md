@@ -21,4 +21,5 @@
 | 8.12.  | 6    | Testejä ja muuta säätöä |
 | 9.12.  | 2    | Javadoc |
 | 10.12. | 3    | Dokumentaatio ja korjauksia | 
-| Yhteensä | 63    | 
+| 16.12. | 2    | Javadoc |
+| Yhteensä | 65    | 

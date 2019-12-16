@@ -20,10 +20,17 @@ public class Renderer {
 
     private final Transformation transformation;
 
+    /**
+     * Luo Renderer objektin ja alustaa sille Tranformation objektin.
+     */
     public Renderer() {
         transformation = new Transformation();
     }
 
+    /**
+     * Alustaa Rendererin toimintaan.
+     * @param window Ikkuna kuvasuhteen laskemista varten
+     */
     public void init(Window window) throws Exception {
         shaderProgram = new ShaderProgram();
         shaderProgram.createVertexShader("/shaders/mainVertex.glsl");
@@ -39,6 +46,12 @@ public class Renderer {
         window.setClearColor(0, 0, 0);
     }
 
+    /**
+     * Huolehtii gameItemien piirtämisestä oikeaan paikkaan.
+     * @param window Ikkuna projektiomatriisin laskuja varten.
+     * @param camera Kamera objecti etäisyyksien laskemiseen.
+     * @param gameItems Kaikki gameItemit joitka scenestä löytyy.
+     */
     public void render(Window window, Camera camera, GameItem[] gameItems) {
         clear();
 
@@ -65,6 +78,9 @@ public class Renderer {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
+    /**
+     * Vapauttaa resurssit.
+     */
     public void destroy() {
         if (shaderProgram != null) {
             shaderProgram.destroy();

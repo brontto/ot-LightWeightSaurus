@@ -12,12 +12,24 @@ public class Transformation {
 
     private final Matrix4f viewMatrix;
 
+    /**
+     * Luo ja lustaa objektin.
+     */
     public Transformation() {
         modelViewMatrix = new Matrix4f();
         projectionMatrix = new Matrix4f();
         viewMatrix = new Matrix4f();
     }
 
+    /**
+     * Luo projektiomatriisin jonka avulla voidaan muuttaa 3d koordinaatit 2d ruudulle.
+     * @param fov Kuinka pitkälle kuvaa piirretään.
+     * @param width Kuinka leveä kuva on.
+     * @param height Kuinka korkea kuva on.
+     * @param zNear Mikä on lähin piirrettävä etäisyys.
+     * @param zFar Mikä on pisin piirrettävä etäisyys.
+     * @return Projektiomatriisi.
+     */
     public final Matrix4f getProjectionMatrix(float fov, float width, float height, float zNear, float zFar) {
         float aspectRatio = width / height;
         projectionMatrix.identity();
@@ -25,6 +37,13 @@ public class Transformation {
         return projectionMatrix;
     }
 
+    /**
+     * Laskee uuden matriisin gameItemin nykyisen rotaation mukaan.
+     * Ja kertoo sen kameran tiedot sisältävällä matriisiilla.
+     * @param gameItem GameItem joka sisältää tiedon sen rotaatiosta.
+     * @param viewMatrix Matriisi joka sisältää tiedot kamerasta.
+     * @return Matriisin joka kertoo miten gameItem pitää pirtää.
+     */
     public Matrix4f getModelViewMatrix(GameItem gameItem, Matrix4f viewMatrix) {
         Vector3f rotation = gameItem.getRotation();
         modelViewMatrix.identity().translate(gameItem.getPosition())
@@ -36,6 +55,11 @@ public class Transformation {
         return viewCurr.mul(modelViewMatrix);
     }
 
+    /**
+     * Voidaan päivittää viewMatriksin tilaa.
+     * @param camera Camera objekti josta heataan rotaatio ja positio.
+     * @return Matrixin jolla lasketaan objektien sijainteja suhteessa kameraan.
+     */
     public Matrix4f getViewMatrix(Camera camera) {
         Vector3f position = camera.getPosition();
         Vector3f rotation = camera.getRotation();

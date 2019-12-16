@@ -14,14 +14,25 @@ public class Texture {
 
     private final int id;
 
-    public Texture(String fileName) throws Exception {
-        this(loadTexture(fileName));
+    /**
+     * Luo tekstuurin  kuvatiedostosta.
+     * @param path Tiedoston sijainti.
+     */
+    public Texture(String path) throws Exception {
+        this(loadTexture(path));
     }
 
+    /**
+     * Apu konsturktori.
+     * @param id Tekstuurin id.
+     */
     public Texture(int id) {
         this.id = id;
     }
 
+    /**
+     * Yhdistää tekstuurin tiettyyn osaan tekstuureja käsittelevään yksikköön.
+     */
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, id);
     }
@@ -30,9 +41,14 @@ public class Texture {
         return id;
     }
 
-    private static int loadTexture(String fileName) throws Exception {
+    /**
+     * Lukee kuvan RGBA muotoon ja syöttää näytänohjaimelle odottamaan.
+     * @param path tekstuurin sijainti.
+     * @return Tekstuurin id näytönohjaimella.
+     */
+    private static int loadTexture(String path) throws Exception {
 
-        PNGDecoder decoder = new PNGDecoder(Texture.class.getResourceAsStream(fileName));
+        PNGDecoder decoder = new PNGDecoder(Texture.class.getResourceAsStream(path));
 
         ByteBuffer buffer = ByteBuffer.allocateDirect(4 * decoder.getWidth() * decoder.getHeight());
 
@@ -53,6 +69,9 @@ public class Texture {
         return textureId;
     }
 
+    /**
+     * Poistaa tekstuurin näytönohjaimelta.
+     */
     public void destroy() {
         glDeleteTextures(id);
     }

@@ -22,6 +22,13 @@ public class Mesh {
 
     private final Texture texture;
 
+    /**
+     * Luo ja alustaa Meshin datan mukaan.
+     * @param vertices Meshin verteksit.
+     * @param textCoords Tekstuurin koordinaatit.
+     * @param indices Indexi lista joka määrää missä järjestyksessä verteksit piirretään.
+     * @param texture Tekstuuri objekti.
+     */
     public Mesh(float[] vertices, float[] textCoords, int[] indices, Texture texture) {
         FloatBuffer posBuffer = null;
         FloatBuffer textCoordsBuffer = null;
@@ -74,11 +81,13 @@ public class Mesh {
         }
     }
 
+    /**
+     * Piirtää meshin ruudulle.
+     */
     public void render() {
         glActiveTexture(GL_TEXTURE0);
 
         glBindTexture(GL_TEXTURE_2D, texture.getId());
-
 
         //Draw mesh
         glBindVertexArray(getVaoId());
@@ -94,6 +103,9 @@ public class Mesh {
         glBindVertexArray(0);
     }
 
+    /**
+     * Vapauttaa Meshin käyttämän resurssit kun niitä ei enää tarvita.
+     */
     public void destroy() {
         glDisableVertexAttribArray(0);
 

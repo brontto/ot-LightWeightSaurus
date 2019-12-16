@@ -19,6 +19,9 @@ public class ShaderProgram {
 
     private final Map<String, Integer> uniforms;
 
+    /**
+     * Luo ja alustaa programin.
+     */
     public ShaderProgram() throws Exception {
         programID = glCreateProgram();
         if (programID == 0) {
@@ -27,14 +30,28 @@ public class ShaderProgram {
         uniforms = new HashMap<>();
     }
 
+    /**
+     * Luo verteksi shaderin.
+     * @param path Shaderin koodin sijainti.
+     */
     public void createVertexShader(String path) throws Exception {
         vertexShaderID = createShader(FileUtils.loadAsString(path), GL_VERTEX_SHADER);
     }
 
+    /**
+     * Luo fragment shaderin.
+     * @param path Shaderin koodin sijainti.
+     */
     public void createFragmentShader(String path) throws Exception {
         fragmentShaderID = createShader(FileUtils.loadAsString(path), GL_FRAGMENT_SHADER);
     }
 
+    /**
+     * Luo shaderin ja yhdistää sen programiin.
+     * @param shaderCode Shaderin koodin.
+     * @param shaderType Shaderin tyyppi.
+     * @return Shaderin id.
+     */
     public int createShader(String shaderCode, int shaderType) throws Exception {
         int shaderId = glCreateShader(shaderType);
         if (shaderId == 0) {
@@ -53,6 +70,9 @@ public class ShaderProgram {
         return shaderId;
     }
 
+    /**
+     * Linkkaa shaderit programiin.
+     */
     public void link() throws Exception {
         glLinkProgram(programID);
         if (glGetProgrami(programID, GL_LINK_STATUS) == 0) {
@@ -73,6 +93,10 @@ public class ShaderProgram {
         }
     }
 
+    /**
+     * Luo uniformin ja tallentaa sen tiedot listaan uniforms.
+     * @param uniformName Uniformin nimi.
+     */
     public void createUniform(String uniformName) throws Exception {
         int uniformLocation = glGetUniformLocation(programID, uniformName);
         if (uniformLocation < 0) {
@@ -81,6 +105,11 @@ public class ShaderProgram {
         uniforms.put(uniformName, uniformLocation);
     }
 
+    /**
+     * Asettaa shaderille menevän uniformin joka sisältää matriisin.
+     * @param uniformName uniformin nimi.
+     * @param value value.
+     */
     public void setUniform(String uniformName, Matrix4f value) {
         try (MemoryStack stack = MemoryStack.stackPush()) {
             FloatBuffer buffer = stack.mallocFloat(16);
@@ -89,18 +118,32 @@ public class ShaderProgram {
         }
     }
 
+    /**
+     * Asettaa shaderille menevän unfiormin.
+     * @param uniformName uniformin nimi.
+     * @param value value.
+     */
     public void setUniform(String uniformName, int value) {
         glUniform1i(uniforms.get(uniformName), value);
     }
 
+    /**
+     * Yhdistää programin näytönohjaimelle.
+     */
     public void bind() {
         glUseProgram(programID);
     }
 
+    /**
+     * Irottaa prgramin näytönohjaimelta.
+     */
     public void unbind() {
         glUseProgram(0);
     }
 
+    /**
+     * Vapauttaa resurssit.
+     */
     public void destroy() {
         unbind();
         if (programID != 0) {
