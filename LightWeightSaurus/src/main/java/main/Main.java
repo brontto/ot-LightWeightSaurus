@@ -1,5 +1,6 @@
 package main;
 
+import game.BunnyModelDemo;
 import game.CameraDemo;
 import game.RollingCubeDemo;
 import engine.IGameLogic;
@@ -20,37 +21,40 @@ public class Main {
         System.out.println("Witch demo u wanna see?");
         System.out.println("1. CameraDemo");
         System.out.println("2. RollingCubeDemo");
+        System.out.println("3. Bunnyyyyy");
         System.out.println("Write a number: ");
-        System.out.println("0 ends the program");
         int number = Integer.valueOf(scanner.nextLine());
 
-        while(true){
-            if(number == 0){
-                break;
-            }else if(number == 1){
-                try {
-                    boolean vSync = true;
-                    IGameLogic gameLogic = new CameraDemo();
-                    Engine engine = new Engine("GAME", vSync, gameLogic);
-                    engine.run(0);
-                } catch (Exception excp) {
-                    excp.printStackTrace();
-                    System.exit(-1);
-                }
-            }else if(number == 2){
-                try {
-                    boolean vSync = true;
-                    IGameLogic gameLogic = new RollingCubeDemo();
-                    Engine engine = new Engine("GAME", vSync, gameLogic);
-                    engine.run(0);
-                } catch (Exception excp) {
-                    excp.printStackTrace();
-                    System.exit(-1);
-                }
+        if (number == 1) {
+            try {
+                boolean vSync = true;
+                IGameLogic gameLogic = new CameraDemo();
+                Engine engine = new Engine("GAME", vSync, gameLogic);
+                engine.run(0);
+            } catch (Exception excp) {
+                excp.printStackTrace();
+                System.exit(-1);
             }
-            number = Integer.valueOf(scanner.nextLine());
+        } else if (number == 2) {
+            try {
+                boolean vSync = true;
+                IGameLogic gameLogic = new RollingCubeDemo();
+                Engine engine = new Engine("GAME", vSync, gameLogic);
+                engine.run(0);
+            } catch (Exception excp) {
+                excp.printStackTrace();
+                System.exit(-1);
+            }
+        } else if (number == 3) {
+            try {
+                boolean vSync = true;
+                IGameLogic gameLogic = new BunnyModelDemo();
+                Engine engine = new Engine("GAME", vSync, gameLogic);
+                engine.run(0);
+            } catch (Exception excp) {
+                excp.printStackTrace();
+                System.exit(-1);
+            }
         }
-
-
     }
 }

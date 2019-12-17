@@ -2,6 +2,7 @@ package graphics;
 
 
 import org.joml.Matrix4f;
+import org.joml.Vector3f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 import utils.FileUtils;
@@ -106,7 +107,7 @@ public class ShaderProgram {
     }
 
     /**
-     * Asettaa shaderille menevän uniformin joka sisältää matriisin.
+     * Asettaa shaderille oleva uniformin valuen joka sisältää tässä kohtaa matriisin.
      * @param uniformName uniformin nimi.
      * @param value value.
      */
@@ -118,8 +119,12 @@ public class ShaderProgram {
         }
     }
 
+    public void setUniform(String uniformName, Vector3f value) {
+        glUniform3f(uniforms.get(uniformName), value.x, value.y, value.z);
+    }
+
     /**
-     * Asettaa shaderille menevän unfiormin.
+     * Asettaa shaderille olen unfiormin valuen.
      * @param uniformName uniformin nimi.
      * @param value value.
      */

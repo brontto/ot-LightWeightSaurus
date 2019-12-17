@@ -175,4 +175,5 @@ public class Window {
     public boolean isvSync() {
         return vSync;
     }
+
 }

@@ -12,31 +12,36 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 public class Mesh {
+
+    private static final Vector3f DEFAULT_COLOR = new Vector3f(1.0f, 1.0f, 1.0f);
+
     private final int vaoId;
     private final int posVboId;
     private final int tcVboId;
     private final int idxVboId;
+    private final int vnVboId;
 
+    private Vector3f color;
+    private Texture texture;
 
     private final int vertexCount;
-
-    private final Texture texture;
 
     /**
      * Luo ja alustaa Meshin datan mukaan.
      * @param vertices Meshin verteksit.
      * @param textCoords Tekstuurin koordinaatit.
+     * @param normals Lista Normalseja.
      * @param indices Indexi lista joka määrää missä järjestyksessä verteksit piirretään.
-     * @param texture Tekstuuri objekti.
      */
-    public Mesh(float[] vertices, float[] textCoords, int[] indices, Texture texture) {
+    public Mesh(float[] vertices, float[] textCoords, float[] normals, int[] indices) {
         FloatBuffer posBuffer = null;
         FloatBuffer textCoordsBuffer = null;
+        FloatBuffer vecNormalsBuffer = null;
         IntBuffer indicesBuffer = null;
 
         try {
+            color = DEFAULT_COLOR;
             vertexCount = indices.length;
-            this.texture = texture;
 
             vaoId = glGenVertexArrays();
             glBindVertexArray(vaoId);
@@ -51,6 +56,14 @@ public class Mesh {
             glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
 
             //color VBO
+            vnVboId = glGenBuffers();
+            vecNormalsBuffer = MemoryUtil.memAllocFloat(normals.length);
+            vecNormalsBuffer.put(normals).flip();
+            glBindBuffer(GL_ARRAY_BUFFER, vnVboId);
+            glBufferData(GL_ARRAY_BUFFER, vecNormalsBuffer, GL_STATIC_DRAW);
+            glVertexAttribPointer(2,3,GL_FLOAT, false, 0, 0);
+
+            //texture VBO
             tcVboId = glGenBuffers();
             textCoordsBuffer = MemoryUtil.memAllocFloat(textCoords.length);
             textCoordsBuffer.put(textCoords).flip();
@@ -85,14 +98,16 @@ public class Mesh {
      * Piirtää meshin ruudulle.
      */
     public void render() {
-        glActiveTexture(GL_TEXTURE0);
+        if(texture != null) {
+            glActiveTexture(GL_TEXTURE0);
 
-        glBindTexture(GL_TEXTURE_2D, texture.getId());
-
+            glBindTexture(GL_TEXTURE_2D, texture.getId());
+        }
         //Draw mesh
         glBindVertexArray(getVaoId());
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, getIdxVboId());
         glDrawElements(GL_TRIANGLES, getVertexCount(), GL_UNSIGNED_INT, 0);
@@ -100,6 +115,7 @@ public class Mesh {
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(2);
         glBindVertexArray(0);
     }
 
@@ -115,11 +131,32 @@ public class Mesh {
         glDeleteBuffers(tcVboId);
         glDeleteBuffers(idxVboId);
 
-        texture.destroy();
-
+        if(texture != null) {
+            texture.destroy();
+        }
         //Delete VAO
         glBindVertexArray(0);
         glDeleteVertexArrays(vaoId);
+    }
+
+    public void setColor(Vector3f colour) {
+        this.color = colour;
+    }
+
+    public Vector3f getColor() {
+        return this.color;
+    }
+
+    public boolean isTextured() {
+        return this.texture != null;
+    }
+
+    public Texture getTexture() {
+        return this.texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
     }
 
     public int getVaoId() {

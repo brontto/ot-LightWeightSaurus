@@ -2,14 +2,22 @@ package utils;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class FileUtilsTest {
 
     @Test
-    public void setUp() {
+    public void start() {
         FileUtils utils = new FileUtils();
         assertNotNull(utils);
+    }
+
+    @Test
+    public void loadAllLines() throws Exception {
+        List<String> lines = FileUtils.readAllLines("/models/cube.obj");
+        assertNotNull(lines);
     }
 
     @Test
