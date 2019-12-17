@@ -1,6 +1,10 @@
 package utils;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileUtils {
@@ -18,5 +22,19 @@ public class FileUtils {
             result = scanner.useDelimiter("\\A").next();
         }
         return result;
+    }
+
+
+    public static List<String> readAllLines(String filePath) throws Exception {
+        List<String> list = new ArrayList<>();
+        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+            Class.forName(FileUtils.class.getName()).getResourceAsStream(filePath)))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                list.add(line);
+            }
+        }
+
+        return list;
     }
 }

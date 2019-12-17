@@ -43,6 +43,9 @@ public class Renderer {
         shaderProgram.createUniform("modelViewMatrix");
         shaderProgram.createUniform("texture_sampler");
 
+        shaderProgram.createUniform("color");
+        shaderProgram.createUniform("useColor");
+
         window.setClearColor(0, 0, 0);
     }
 
@@ -66,9 +69,13 @@ public class Renderer {
         shaderProgram.setUniform("texture_sampler", 0);
 
         for (GameItem gameItem : gameItems) {
+            Mesh mesh = gameItem.getMesh();
             Matrix4f modelViewMatrix = transformation.getModelViewMatrix(gameItem, viewMatrix);
             shaderProgram.setUniform("modelViewMatrix", modelViewMatrix);
-            gameItem.getMesh().render();
+
+            shaderProgram.setUniform("color", mesh.getColor());
+            shaderProgram.setUniform("useColor", mesh.isTextured() ? 0 : 1);
+            mesh.render();
         }
 
         shaderProgram.unbind();
