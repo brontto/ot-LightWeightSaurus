@@ -1,4 +1,4 @@
-# työaikakirjanpito
+﻿# työaikakirjanpito
 
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
@@ -22,4 +22,5 @@
 | 9.12.  | 2    | Javadoc |
 | 10.12. | 3    | Dokumentaatio ja korjauksia | 
 | 16.12. | 2    | Javadoc |
-| Yhteensä | 65    | 
+| 16.12. | 4    | Obj tiedostojen tuki |
+| Yhteensä | 69    | 
