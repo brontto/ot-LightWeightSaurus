@@ -33,6 +33,12 @@ Suorituksen aikana moottori päivittää eri komponentteja peräkkäin tietyssä
 
 <img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/suorituskaavio.png?raw=true" width="500">
 
+## IGameLogic
+
+IGameLogic on ehkä lopulta moottorin mielekiintoisin osuus. Sillä määritellään kulloinenki "scene" mikä moottorin pitää suorittaa. "Scenen" vaihto ei ole mahdollista suorituksen aikana. 
+IGameLogic rajapinnan toteuttavassa luokassa määritellään mitä erilaisia komponentteja haluamme moottorin sisällä mahdollisesti käyttää. Yleisimmät ovat Camera, Renderer ja lista GameItemeitä jotka sisältävä tiedot esim. 3d mallista ja textuuresit sekä näiden lokaation 3d tilassa.
+Siinä myös määritellään millaisia käyttäjän syötteitä ohjelma tarkkailee jokaisella ruudunpäivityksellä ja mitä näille syötteillä tehdään. Esim. RollingCubeDemossa kuunnellaan Q, A, Z, X ja nuolinäppäimiä ja niiden pohjalta sitten liikutetaan kuutiota edestakaisin.   
+
 ## Oheistoiminnot
 
 Ohjelma lukee useampaa erilaista tiedostoa joiden lukeminen tapahtuu utils pakkauksen luokilla. Yleisin tiedostyyppi moottorissa on shader joka sisältää näytönohjaimella ajettavan ohjelman. Tämän lisäksi ohjelmasta löytyy tuki sekä PNG tiedostojen käyttämiselle tekstuurina sekä OBJ tiedostojen käyttämiseen 3d malleina. 

@@ -15,8 +15,6 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class RollingCubeDemo implements IGameLogic {
 
-    private static final float MOUSE_SENSITIVITY = 0.2f;
-
     private final Vector3f cameraInc;
 
     private final Renderer renderer;
@@ -24,9 +22,6 @@ public class RollingCubeDemo implements IGameLogic {
     private final Camera camera;
 
     private GameItem[] gameItems;
-
-    private static final float CAMERA_POS_STEP = 0.05f;
-
 
     public RollingCubeDemo() {
         renderer = new Renderer();
