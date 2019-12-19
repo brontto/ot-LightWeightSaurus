@@ -23,4 +23,5 @@
 | 10.12. | 3    | Dokumentaatio ja korjauksia | 
 | 16.12. | 2    | Javadoc |
 | 16.12. | 4    | Obj tiedostojen tuki |
-| Yhteensä | 69    | 
+| 19.12. | 1    | Dokumentaatiota |
+| Yhteensä | 70  | 

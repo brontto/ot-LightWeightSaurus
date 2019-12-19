@@ -1,4 +1,6 @@
-# Arkkitehtuurikuvaus
+﻿# Arkkitehtuurikuvaus
+
+Ohjelmisto käyttää pohjanaan Light Weight Java Game Libraryn osia jotka tarjoavat rajapinnan OpenGL:än käyttöön javalla. OpenGL on taas rajapinta grafiikan piirtämiseen näytöonhjaimen avulla. 
 
 ## Pakkausrakenne
 
@@ -31,4 +33,6 @@ Suorituksen aikana moottori päivittää eri komponentteja peräkkäin tietyssä
 
 <img src="https://github.com/brontto/ot-LightWeightSaurus/blob/master/dokumentaatio/Kuvat/suorituskaavio.png?raw=true" width="500">
 
+## Oheistoiminnot
 
+Ohjelma lukee useampaa erilaista tiedostoa joiden lukeminen tapahtuu utils pakkauksen luokilla. Yleisin tiedostyyppi moottorissa on shader joka sisältää näytönohjaimella ajettavan ohjelman. Tämän lisäksi ohjelmasta löytyy tuki sekä PNG tiedostojen käyttämiselle tekstuurina sekä OBJ tiedostojen käyttämiseen 3d malleina. 
