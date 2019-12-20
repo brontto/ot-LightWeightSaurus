@@ -29,6 +29,7 @@ public class Renderer {
 
     /**
      * Alustaa Rendererin toimintaan.
+     *
      * @param window Ikkuna kuvasuhteen laskemista varten
      */
     public void init(Window window) throws Exception {
@@ -48,8 +49,9 @@ public class Renderer {
 
     /**
      * Huolehtii gameItemien piirtämisestä oikeaan paikkaan.
-     * @param window Ikkuna projektiomatriisin laskuja varten.
-     * @param camera Kamera objecti etäisyyksien laskemiseen.
+     *
+     * @param window    Ikkuna projektiomatriisin laskuja varten.
+     * @param camera    Kamera objecti etäisyyksien laskemiseen.
      * @param gameItems Kaikki gameItemit joitka scenestä löytyy.
      */
     public void render(Window window, Camera camera, GameItem[] gameItems) {

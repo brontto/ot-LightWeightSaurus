@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             boolean vSync = true;
-            IGameLogic gameLogic = new CameraDemo();
+            IGameLogic gameLogic = new RollingCubeDemo();
             Engine engine = new Engine("GAME", vSync, gameLogic);
             engine.run(0);
         } catch (Exception excp) {

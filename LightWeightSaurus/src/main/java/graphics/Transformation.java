@@ -23,11 +23,12 @@ public class Transformation {
 
     /**
      * Luo projektiomatriisin jonka avulla voidaan muuttaa 3d koordinaatit 2d ruudulle.
-     * @param fov Kuinka pitkälle kuvaa piirretään.
-     * @param width Kuinka leveä kuva on.
+     *
+     * @param fov    Kuinka pitkälle kuvaa piirretään.
+     * @param width  Kuinka leveä kuva on.
      * @param height Kuinka korkea kuva on.
-     * @param zNear Mikä on lähin piirrettävä etäisyys.
-     * @param zFar Mikä on pisin piirrettävä etäisyys.
+     * @param zNear  Mikä on lähin piirrettävä etäisyys.
+     * @param zFar   Mikä on pisin piirrettävä etäisyys.
      * @return Projektiomatriisi.
      */
     public final Matrix4f getProjectionMatrix(float fov, float width, float height, float zNear, float zFar) {
@@ -40,7 +41,8 @@ public class Transformation {
     /**
      * Laskee uuden matriisin gameItemin nykyisen rotaation mukaan.
      * Ja kertoo sen kameran tiedot sisältävällä matriisiilla.
-     * @param gameItem GameItem joka sisältää tiedon sen rotaatiosta.
+     *
+     * @param gameItem   GameItem joka sisältää tiedon sen rotaatiosta.
      * @param viewMatrix Matriisi joka sisältää tiedot kamerasta.
      * @return Matriisin joka kertoo miten gameItem pitää pirtää.
      */
@@ -57,6 +59,7 @@ public class Transformation {
 
     /**
      * Voidaan päivittää viewMatriksin tilaa.
+     *
      * @param camera Camera objekti josta heataan rotaatio ja positio.
      * @return Matrixin jolla lasketaan objektien sijainteja suhteessa kameraan.
      */

@@ -21,6 +21,7 @@ public class Input {
 
     /**
      * Alustaa inputit oikeaan ikkunaan.
+     *
      * @param windowsHandle ikkunan tunniste.
      */
     public static void init(Long windowsHandle) {
@@ -108,6 +109,7 @@ public class Input {
 
     /**
      * Palauttaa halutun näppäin inputin tilan.
+     *
      * @param key Haluttu näppäin.
      * @return Tila. Onko painettu vai ei.
      */
@@ -117,6 +119,7 @@ public class Input {
 
     /**
      * Palauttaa halutun hiiren painikkeen inputin tilan.
+     *
      * @param key Haluttu painike.
      * @return Tila. Onko painettu vai ei.
      */

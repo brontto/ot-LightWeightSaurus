@@ -24,10 +24,11 @@ public class Mesh {
 
     /**
      * Luo ja alustaa Meshin datan mukaan.
-     * @param vertices Meshin verteksit.
+     *
+     * @param vertices   Meshin verteksit.
      * @param textCoords Tekstuurin koordinaatit.
-     * @param indices Indexi lista joka määrää missä järjestyksessä verteksit piirretään.
-     * @param texture Tekstuuri objekti.
+     * @param indices    Indexi lista joka määrää missä järjestyksessä verteksit piirretään.
+     * @param texture    Tekstuuri objekti.
      */
     public Mesh(float[] vertices, float[] textCoords, int[] indices, Texture texture) {
         FloatBuffer posBuffer = null;

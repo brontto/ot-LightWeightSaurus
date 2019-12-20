@@ -23,10 +23,11 @@ public class Window {
 
     /**
      * Luo Window olion.
-     * @param title Titteli joka tulee näkyviin ikkunan ylälaitaan
-     * @param width Ikkunan leveys.
+     *
+     * @param title  Titteli joka tulee näkyviin ikkunan ylälaitaan
+     * @param width  Ikkunan leveys.
      * @param height Ikkunan korkeus.
-     * @param vSync Vsync päällä vai ei.
+     * @param vSync  Vsync päällä vai ei.
      */
     public Window(String title, int width, int height, boolean vSync) {
         this.width = width;
@@ -38,6 +39,7 @@ public class Window {
 
     /**
      * Alustaa ikkunan.
+     *
      * @param showWindow Näyttääkö ikkunan vai ei. Testejä varten voidaan haluta että ei.
      *                   Mutta suorituksen aikana tämä pitää olla true.
      */
@@ -71,8 +73,8 @@ public class Window {
         GLFWVidMode videoMode = glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
 
         glfwSetWindowPos(windowHandle,
-            (videoMode.width() - width) / 2,
-            (videoMode.height() - height) / 2
+                (videoMode.width() - width) / 2,
+                (videoMode.height() - height) / 2
         );
 
         glfwMakeContextCurrent(windowHandle);
@@ -91,7 +93,7 @@ public class Window {
     }
 
     /**
-     *  Luo ikkunan koon muokkaamisen mahdollistavan komennon.
+     * Luo ikkunan koon muokkaamisen mahdollistavan komennon.
      */
     private void createCallbacks() {
         sizeCallback = new GLFWWindowSizeCallback() {
@@ -129,6 +131,7 @@ public class Window {
 
     /**
      * Asettaa taustan värin.
+     *
      * @param r Puna.
      * @param g Vihreä.
      * @param b Sininen.
@@ -146,6 +149,7 @@ public class Window {
 
     /**
      * Kertoo pitäiskö ikkuna sulkea.
+     *
      * @return boolean joka ilmoittaa suljetaanko ikkuna.
      */
     public boolean close() {
@@ -170,6 +174,7 @@ public class Window {
 
     /**
      * Onko Vsync päällä.
+     *
      * @return Onko päällä vai ei.
      */
     public boolean isvSync() {

@@ -32,6 +32,7 @@ public class ShaderProgram {
 
     /**
      * Luo verteksi shaderin.
+     *
      * @param path Shaderin koodin sijainti.
      */
     public void createVertexShader(String path) throws Exception {
@@ -40,6 +41,7 @@ public class ShaderProgram {
 
     /**
      * Luo fragment shaderin.
+     *
      * @param path Shaderin koodin sijainti.
      */
     public void createFragmentShader(String path) throws Exception {
@@ -48,6 +50,7 @@ public class ShaderProgram {
 
     /**
      * Luo shaderin ja yhdistää sen programiin.
+     *
      * @param shaderCode Shaderin koodin.
      * @param shaderType Shaderin tyyppi.
      * @return Shaderin id.
@@ -95,6 +98,7 @@ public class ShaderProgram {
 
     /**
      * Luo uniformin ja tallentaa sen tiedot listaan uniforms.
+     *
      * @param uniformName Uniformin nimi.
      */
     public void createUniform(String uniformName) throws Exception {
@@ -107,8 +111,9 @@ public class ShaderProgram {
 
     /**
      * Asettaa shaderille menevän uniformin joka sisältää matriisin.
+     *
      * @param uniformName uniformin nimi.
-     * @param value value.
+     * @param value       value.
      */
     public void setUniform(String uniformName, Matrix4f value) {
         try (MemoryStack stack = MemoryStack.stackPush()) {
@@ -120,8 +125,9 @@ public class ShaderProgram {
 
     /**
      * Asettaa shaderille menevän unfiormin.
+     *
      * @param uniformName uniformin nimi.
-     * @param value value.
+     * @param value       value.
      */
     public void setUniform(String uniformName, int value) {
         glUniform1i(uniforms.get(uniformName), value);

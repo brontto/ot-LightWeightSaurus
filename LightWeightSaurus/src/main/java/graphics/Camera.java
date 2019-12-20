@@ -19,6 +19,7 @@ public class Camera {
 
     /**
      * Luo kameran haluttuun kohtaan, halutulla rotaatiolla.
+     *
      * @param position Haluttu kohta 3d tilassa.
      * @param rotation Haluttu rotaatio 3d tilassa.
      */
@@ -30,6 +31,7 @@ public class Camera {
 
     /**
      * Siirtää kameran haluttuun positioon.
+     *
      * @param x Paikka X-akselilla.
      * @param y Paikka Y-akselilla.
      * @param z Paikka Z-akselilla.
@@ -47,6 +49,7 @@ public class Camera {
 
     /**
      * Siirtää kameraa annettuihin suuntiin.
+     *
      * @param x X-akselin siirros.
      * @param y Y-akselin siirros.
      * @param z Z-akselin siirros.
@@ -70,6 +73,7 @@ public class Camera {
 
     /**
      * Kääntää kameran haluttuun suuntaan.
+     *
      * @param x Rotaatio X-askelilla.
      * @param y Rotaatio Y-askelilla.
      * @param z Rotaatio X-askelilla.
@@ -82,6 +86,7 @@ public class Camera {
 
     /**
      * Muokkaa kameran rotaatiota annettuihin suuntiin halutun määrän.
+     *
      * @param offsetX X-akselin siirros.
      * @param offsetY Y-akselin siirros.
      * @param offsetZ Z-akselin siirros.

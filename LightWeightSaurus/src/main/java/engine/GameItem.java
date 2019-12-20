@@ -16,6 +16,7 @@ public class GameItem {
 
     /**
      * Konstruktori joka luo pelin sisäisen objektin.
+     *
      * @param mesh sisältää tarvittavan tiedon grafiikasta.
      */
     public GameItem(Mesh mesh) {
@@ -28,6 +29,7 @@ public class GameItem {
 
     /**
      * Asettaa GameItemin lokaation 3D tilassa.
+     *
      * @param x x-akseli
      * @param y y-akseli
      * @param z z-akseli
@@ -56,6 +58,7 @@ public class GameItem {
 
     /**
      * Asettaa GameItemin rotaation 3D tilassa.
+     *
      * @param x x-akseli
      * @param y y-akseli
      * @param z z-akseli

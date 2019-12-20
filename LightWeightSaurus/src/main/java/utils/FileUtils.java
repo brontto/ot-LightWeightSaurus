@@ -7,6 +7,7 @@ public class FileUtils {
 
     /**
      * Lukee tiedoston merkkijonoksi polusta.
+     *
      * @param filePath Tiedostopolku.
      * @return Tiedosto merkkijonona.
      * @throws Exception Poikkeus jos tiedostoa ei löydy tai voida lukea.

@@ -5,7 +5,7 @@ Ohjelman avulla voidaan näyttää yksinkertaista 3d-grafiikkaa ruudulla ja sen 
 Sen keskeiset ominaisuudet ovat 3d-grafiikan piirtäminen, käyttäjän syötteen vastaanottaminen ja erilaisten scenejen tallentaminen.
 
 ## Minimaalinen toiminnallisuus
-Yksinkertainen scene jossa on kuutio jota voidaan liikuttaa käyttäjän syötteen avulla.
+Yksinkertainen scene jossa on kuutio jota voidaan liikuttaa käyttäjän syötteen avulla. (Tehty)
 
 ## Jatkokehitys
 - Scenen talennus tiedostoon. 

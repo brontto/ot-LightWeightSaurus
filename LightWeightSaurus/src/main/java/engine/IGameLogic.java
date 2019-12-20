@@ -6,6 +6,7 @@ public interface IGameLogic {
 
     /**
      * Alustaa pelilogiikan.
+     *
      * @param window on moottorin ikkuna johon pelin halutaan olevan yhteydessä
      * @throws Exception
      */
@@ -13,12 +14,14 @@ public interface IGameLogic {
 
     /**
      * Päivittää pelilogiikan.
+     *
      * @param interval päivitysten välinen aika.
      */
     void update(float interval);
 
     /**
      * Piirtää grafiikan pelilogiikan osalta.
+     *
      * @param window ikkuna johon hlutaan piirtää.
      */
     void render(Window window);

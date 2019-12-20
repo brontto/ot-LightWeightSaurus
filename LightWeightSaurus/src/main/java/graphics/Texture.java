@@ -16,6 +16,7 @@ public class Texture {
 
     /**
      * Luo tekstuurin  kuvatiedostosta.
+     *
      * @param path Tiedoston sijainti.
      */
     public Texture(String path) throws Exception {
@@ -24,6 +25,7 @@ public class Texture {
 
     /**
      * Apu konsturktori.
+     *
      * @param id Tekstuurin id.
      */
     public Texture(int id) {
@@ -43,6 +45,7 @@ public class Texture {
 
     /**
      * Lukee kuvan RGBA muotoon ja syöttää näytänohjaimelle odottamaan.
+     *
      * @param path tekstuurin sijainti.
      * @return Tekstuurin id näytönohjaimella.
      */

@@ -19,6 +19,7 @@ public class Time {
 
     /**
      * Kertoo päivityksestä kuluneen ajan.
+     *
      * @return Kulunut aika edellisestä päivityksestä.
      */
     public static float getDeltaTime() {
@@ -34,6 +35,7 @@ public class Time {
 
     /**
      * Kertoo käynnistyksestä kuluneen ajan.
+     *
      * @return käynnistyksestä kulunut aika.
      */
     public static double getElapsedTime() {
