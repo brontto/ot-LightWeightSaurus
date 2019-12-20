@@ -1,4 +1,4 @@
-
+﻿
 # LWS - LightWeightSaurus 3d-moottori, ohjelmistotekniikan harjoitustyö
 
 Ohjelman tarkoitus on mahdollistaa 3d-grafiikan piirtämisen tietokoneen ruudulle. 
@@ -21,6 +21,7 @@ Ohjelman tarkoitus on mahdollistaa 3d-grafiikan piirtämisen tietokoneen ruudull
 
 [Viikko 6](https://github.com/brontto/ot-LightWeightSaurus/releases/tag/0.2)
 
+[Loppu](https://github.com/brontto/ot-LightWeightSaurus/releases/tag/0.3)
 
 ## Komentorivitoiminnot
 

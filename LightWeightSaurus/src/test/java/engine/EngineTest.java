@@ -34,7 +34,7 @@ public class EngineTest {
 
     @Test
     public void run() throws InterruptedException {
-        engine.run(3);
+        engine.run(1);
         assertTrue(engine.isInited());
     }
 
